@@ -1,6 +1,14 @@
 # Django URL Shortener
 
-# References
+## Misc
+
+### Command that was used to create Django app inside Docker
+
+```shell script
+docker-compose run web pipenv run django-admin startproject django_url_shortener .
+```
+
+## References
 
 1) https://choosealicense.com/
 1) https://docs.docker.com/compose/django/
