@@ -2,10 +2,11 @@
 
 ## Misc
 
-### Command that was used to create Django app inside Docker
+### Commands that were used to create Django project and app inside Docker
 
 ```shell script
 docker-compose run web pipenv run django-admin startproject django_url_shortener .
+docker-compose run web pipenv run django-admin startapp url_shortener
 ```
 
 ## References
