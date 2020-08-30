@@ -12,7 +12,8 @@
    ```
    git clone https://github.com/teremterem/django_url_shortener.git
    ```
-1) ```shell script
+1) Go to the repo dir (the rest of the instruction assumes that you're inside the repo dir)
+   ```shell script
    cd django_url_shortener/
    ```
 
