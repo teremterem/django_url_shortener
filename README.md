@@ -61,7 +61,17 @@ TODO
   https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/) (try out [ASGI](
   https://asgi.readthedocs.io/en/latest/)).
 - Use [multiple docker compose files](
-  https://runnable.com/docker/advanced-docker-compose-configuration#using-multiple-docker-compose-files) to make commands that run DB migrations, unit tests etc. shorter.
+  https://runnable.com/docker/advanced-docker-compose-configuration#using-multiple-docker-compose-files)
+  to make commands that run DB migrations, unit tests etc. shorter.
+  - And more than one Dockerfile to separate between prod / non-prod images?  
+    For ex. prod version of Dockerfile should contain
+    ```shell script
+    RUN pipenv install --deploy
+    ```
+    instead of
+    ```shell script
+    RUN pipenv install --dev --deploy
+    ```
 - Measure test [coverage](https://coverage.readthedocs.io/en/coverage-5.2.1/).
 
 ## Misc
