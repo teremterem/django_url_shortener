@@ -32,6 +32,7 @@ TODO
 ```shell script
 docker-compose up
 ```
+Then open http://localhost:8000/ in your browser.
 
 ## Rebuilding
 
