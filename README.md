@@ -23,7 +23,7 @@
 ## Migrating DB
 
 ```
-docker-compose run web pipenv run python manage.py migrate
+docker-compose run --rm web pipenv run python manage.py migrate
 ```
 ***This step is required before running the app for the first time.***  
 After that (unless DB models were changed and new DB migrations were added)
@@ -32,7 +32,7 @@ there is no need to migrate DB again.
 ## Testing
 
 ```
-docker-compose run web pipenv run python manage.py test
+docker-compose run --rm web pipenv run python manage.py test
 ```
 
 ## Running
@@ -85,13 +85,15 @@ TODO
   - pytest fixtures
   - framework level support of python's native assert statements
     (unittest requires you to use it's own assert functions if you want test output to be informative)
+- Describe in this README.md how to use [pdb](https://docs.python.org/3/library/pdb.html)
+  to debug Django app inside Docker (as well as how to debug tests).
 
 ## Misc
 
 ### Command to make DB migrations
 
 ```
-docker-compose run web pipenv run python manage.py makemigrations
+docker-compose run --rm web pipenv run python manage.py makemigrations
 ```
 
 ### Commands to log into the running Docker container
@@ -102,8 +104,8 @@ https://phase2.github.io/devtools/common-tasks/ssh-into-a-container/)
 ### Commands that were used to create Django project and app
 
 ```
-docker-compose run web pipenv run django-admin startproject django_url_shortener .
-docker-compose run web pipenv run django-admin startapp url_shortener
+docker-compose run --rm web pipenv run django-admin startproject django_url_shortener .
+docker-compose run --rm web pipenv run django-admin startapp url_shortener
 ```
 
 ## References
