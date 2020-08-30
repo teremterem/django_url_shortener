@@ -3,7 +3,8 @@
 ## Installation
 
 1) [Install Docker Compose](https://docs.docker.com/compose/install/)
-1) [Configure Docker to run without sudo (Linux)](https://docs.docker.com/engine/install/linux-postinstall/)
+1) [Configure Docker to run without sudo (Linux)](
+   https://docs.docker.com/engine/install/linux-postinstall/)
 1) Clone this repo with either SSH
    ```shell script
    git clone git@github.com:teremterem/django_url_shortener.git
@@ -21,7 +22,9 @@
 
 ## Migrating DB
 
-TODO
+```shell script
+docker-compose run web pipenv run python manage.py migrate
+```
 
 ## Testing
 
@@ -50,9 +53,11 @@ TODO
 
 ## Areas of improvement
 
-- [Switch from Django built-in web server to a production grade web server.](https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/)
-
-TODO
+- Switch from Django built-in web server to [a production grade web server](
+  https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/) (try out [ASGI](
+  https://asgi.readthedocs.io/en/latest/)).
+- Use [multiple docker compose files](
+  https://runnable.com/docker/advanced-docker-compose-configuration#using-multiple-docker-compose-files) to make commands that run DB migrations, unit tests etc. shorter.
 
 ## Misc
 
