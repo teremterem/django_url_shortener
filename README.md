@@ -62,8 +62,9 @@ One example of when rebuilding Docker would be necessary is after dependencies w
   ```
   docker-compose run --rm -p 8000:8000 web
   ```
-  ***Running it this way instead of using ```docker-compose up```
-  ensures that you will be able to interact with ipdb.***
+  Running it this way instead of using ```docker-compose up```
+  ensures that you will be able to interact with ipdb (make sure to first stop the app if it is already running with
+  ```docker-compose up```).
 
 You will break into the debugger as soon as python interpreter reaches the code above that you inserted (pay attention
 to the console in which you ran docker-compose command).  
