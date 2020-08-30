@@ -67,7 +67,8 @@ One example of when rebuilding Docker would be necessary is after dependencies w
   ```docker-compose up```).
 
 You will break into the debugger as soon as python interpreter reaches the code above that you inserted (pay attention
-to the console in which you ran docker-compose command).  
+to the console in which you ran docker-compose command).
+
 See an [ipdb cheat sheet](https://wangchuan.github.io/coding/2017/07/12/ipdb-cheat-sheet.html) for quick help on how to
 interact with ipdb debugger.
 
