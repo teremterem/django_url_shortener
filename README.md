@@ -12,22 +12,28 @@
    ```
    git clone https://github.com/teremterem/django_url_shortener.git
    ```
-1) Go to the repo dir (the rest of the instruction assumes that you're inside the repo dir)
+   or any other way that suits you and that GitHub supports
+1) Go to the repo dir (the rest of the instruction assumes
+   that you're at the top of the repo directory structure)
    ```shell script
    cd django_url_shortener/
    ```
 
-### Migrating DB
+## Migrating DB
 
 TODO
 
-### Running
+## Testing
+
+TODO
+
+## Running
 
 ```shell script
 docker-compose up
 ```
 
-### Rebuilding
+## Rebuilding
 
 This is necessary when dependencies are changed in Pipfile and Pipfile.lock
 
@@ -43,6 +49,14 @@ docker-compose build
 docker-compose run web pipenv run django-admin startproject django_url_shortener .
 docker-compose run web pipenv run django-admin startapp url_shortener
 ```
+
+### Command to log into the running Docker container
+
+TODO
+
+### Command to see the Docker container logs
+
+TODO
 
 ## References
 
