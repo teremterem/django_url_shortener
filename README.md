@@ -73,6 +73,8 @@ TODO
     RUN pipenv install --dev --deploy
     ```
 - Measure test [coverage](https://coverage.readthedocs.io/en/coverage-5.2.1/).
+- Switch from unittests to [pytest-django](https://pytest-django.readthedocs.io/en/latest/)? Add [pytest-bdd](
+  https://automationpanda.com/2018/10/22/python-testing-101-pytest-bdd/) for black box testing?
 
 ## Misc
 
@@ -105,8 +107,11 @@ docker-compose run web pipenv run django-admin startapp url_shortener
 1) https://docs.djangoproject.com/en/3.1/topics/db/models/
 1) https://docs.djangoproject.com/en/3.1/topics/migrations/
 1) https://pythonspeed.com/articles/schema-migrations-server-startup/
+1) https://docs.djangoproject.com/en/3.1/topics/testing/overview/
 
 ### TODO
 
 1) https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
 1) https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key
+1) https://www.forbes.com/sites/ygrauer/2016/04/20/five-reasons-you-should-stop-shortening-urls/#17ecff623f69
+1) https://en.wikipedia.org/wiki/URL_shortening
