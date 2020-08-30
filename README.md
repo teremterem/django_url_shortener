@@ -39,11 +39,11 @@ Then open http://localhost:8000/ in your browser.
 
 ## Rebuilding
 
-This is necessary when dependencies are changed in Pipfile and Pipfile.lock
-
 ```shell script
 docker-compose build
 ```
+
+This is necessary when, for ex., dependencies are changed in Pipfile and Pipfile.lock.
 
 ## Choices made
 
