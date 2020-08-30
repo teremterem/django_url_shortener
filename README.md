@@ -57,12 +57,17 @@ One example of when rebuilding Docker would be necessary is after dependencies w
   ```python
   import ipdb; ipdb.set_trace()
   ```
-- Run either the app or the tests (depending on what you want to debug and where you inserted the code from the above)
-as was described in previous sections.
+- If you are trying to debug tests then run the tests as described above in [Test](#Test) section.
+- ***If you are trying to debug the app itself then run it using the following command:***
+  ```
+  docker-compose run --rm -p 8000:8000 web
+  ```
+  ***Running it this way instead of using ```docker-compose up```
+  ensures that you will be able to interact with ipdb.***
 
-You will break into the debugger as soon as python reaches the code from above (pay attention to the console in which
-you ran docker-compose command). See an
-[ipdb cheat sheet](https://wangchuan.github.io/coding/2017/07/12/ipdb-cheat-sheet.html) for quick help on how to
+You will break into the debugger as soon as python interpreter reaches the code above that you inserted (pay attention
+to the console in which you ran docker-compose command).  
+See an [ipdb cheat sheet](https://wangchuan.github.io/coding/2017/07/12/ipdb-cheat-sheet.html) for quick help on how to
 interact with ipdb debugger.
 
 ## Choices made
