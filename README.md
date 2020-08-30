@@ -66,8 +66,7 @@ TODO
   https://asgi.readthedocs.io/en/latest/)).
 - Use [multiple docker compose files](
   https://runnable.com/docker/advanced-docker-compose-configuration#using-multiple-docker-compose-files)
-  to make commands that run DB migrations, unit tests etc. shorter. (And to avoid creating
-  multiple one-time-use containers in Docker?)
+  to make commands that run DB migrations, unit tests etc. shorter.
   - Also use more than one Dockerfile to separate between prod / non-prod images?  
     For ex. prod version of Dockerfile should contain
     ```
