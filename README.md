@@ -41,6 +41,14 @@ This is necessary when dependencies are changed in Pipfile and Pipfile.lock
 docker-compose build
 ```
 
+## Choices made
+
+TODO
+
+## Areas of improvement
+
+TODO
+
 ## Misc
 
 ### Commands that were used to create Django project and app inside Docker
