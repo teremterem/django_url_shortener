@@ -20,17 +20,17 @@
    cd django_url_shortener/
    ```
 
-## Migrating DB
+### Migrating DB
 
 ```shell script
 docker-compose run web pipenv run python manage.py migrate
 ```
 
-## Testing
+### Testing
 
 TODO
 
-## Running
+### Running
 
 ```shell script
 docker-compose up
@@ -86,10 +86,9 @@ docker-compose run web pipenv run django-admin startapp url_shortener
 1) https://pipenv-fork.readthedocs.io/en/latest/basics.html
 1) https://docs.djangoproject.com/en/3.1/topics/db/models/
 1) https://docs.djangoproject.com/en/3.1/topics/migrations/
+1) https://pythonspeed.com/articles/schema-migrations-server-startup/
 
 ### TODO
 
-1) https://pythonspeed.com/articles/schema-migrations-server-startup/
-1) https://runnable.com/docker/advanced-docker-compose-configuration
 1) https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
 1) https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key
