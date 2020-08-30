@@ -63,7 +63,7 @@ as was described in previous sections.
 You will break into the debugger as soon as python reaches the code from above (pay attention to the console in which
 you ran docker-compose command). See an
 [ipdb cheat sheet](https://wangchuan.github.io/coding/2017/07/12/ipdb-cheat-sheet.html) for quick help on how to
-interact with pdb / ipdb debugger.
+interact with ipdb debugger.
 
 ## Choices made
 
