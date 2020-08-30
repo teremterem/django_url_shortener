@@ -66,8 +66,9 @@ TODO
   https://asgi.readthedocs.io/en/latest/)).
 - Use [multiple docker compose files](
   https://runnable.com/docker/advanced-docker-compose-configuration#using-multiple-docker-compose-files)
-  to make commands that run DB migrations, unit tests etc. shorter.
-  - And more than one Dockerfile to separate between prod / non-prod images?  
+  to make commands that run DB migrations, unit tests etc. shorter. (And to avoid creating
+  multiple one-time-use containers in Docker?)
+  - Also use more than one Dockerfile to separate between prod / non-prod images?  
     For ex. prod version of Dockerfile should contain
     ```
     RUN pipenv install --deploy
@@ -77,8 +78,13 @@ TODO
     RUN pipenv install --dev --deploy
     ```
 - Measure test [coverage](https://coverage.readthedocs.io/en/coverage-5.2.1/).
-- Switch from unittests to [pytest-django](https://pytest-django.readthedocs.io/en/latest/)? Add [pytest-bdd](
-  https://automationpanda.com/2018/10/22/python-testing-101-pytest-bdd/) for black box testing?
+- Switch from unittests to [pytest-django](https://pytest-django.readthedocs.io/en/latest/)?  
+  Add [pytest-bdd](
+  https://automationpanda.com/2018/10/22/python-testing-101-pytest-bdd/) for black box testing (try out BDD)?  
+  Some of the advantages of pytest over vanilla unittest:
+  - pytest fixtures
+  - framework level support of python's native assert statements
+    (unittest requires you to use it's own assert functions if you want test output to be informative)
 
 ## Misc
 
