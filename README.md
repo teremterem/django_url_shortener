@@ -43,9 +43,13 @@ docker-compose build
 
 ## Choices made
 
+- Pipenv
+
 TODO
 
 ## Areas of improvement
+
+- [Switch from Django built-in web server to a production grade web server.](https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/)
 
 TODO
 
@@ -72,10 +76,11 @@ TODO
 1) https://docs.docker.com/compose/django/
 1) https://realpython.com/pipenv-guide/
 1) https://pipenv-fork.readthedocs.io/en/latest/basics.html
+1) https://docs.djangoproject.com/en/3.1/topics/db/models/
 
 ### TODO
 
-1) https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key
 1) https://pythonspeed.com/articles/schema-migrations-server-startup/
 1) https://runnable.com/docker/advanced-docker-compose-configuration
 1) https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
+1) https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key

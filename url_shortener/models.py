@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+
+class ShortenedUrl(models.Model):
+    url_uuid = models.CharField(max_length=50, unique=True)
