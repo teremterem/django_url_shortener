@@ -128,7 +128,7 @@ docker-compose run --rm web pipenv run django-admin startproject django_url_shor
 docker-compose run --rm web pipenv run django-admin startapp url_shortener
 ```
 
-## References
+## More references
 
 1) https://choosealicense.com/
 1) https://docs.docker.com/compose/django/
@@ -138,12 +138,12 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 1) https://docs.djangoproject.com/en/3.1/topics/migrations/
 1) https://pythonspeed.com/articles/schema-migrations-server-startup/
 1) https://docs.djangoproject.com/en/3.1/topics/testing/overview/
+1) https://odwyer.software/blog/how-to-use-ipdb-with-docker-compose
+1) https://stackoverflow.com/questions/36249744/interactive-shell-using-docker-compose
 
 ### TODO
 
 1) https://realpython.com/caching-in-django-with-redis/
-1) https://odwyer.software/blog/how-to-use-ipdb-with-docker-compose
-1) https://stackoverflow.com/questions/36249744/interactive-shell-using-docker-compose
 1) https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
 1) https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key
 1) https://www.forbes.com/sites/ygrauer/2016/04/20/five-reasons-you-should-stop-shortening-urls/#17ecff623f69

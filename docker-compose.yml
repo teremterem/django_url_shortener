@@ -11,6 +11,8 @@ services:
       - "8432:5432"  # allows to use an external tool like DBeaver to connect to and inspect the database content
   web:
     build: .
+    stdin_open: true  # docker run -i  # needed to enable debugging with pdb/ipdb
+    tty: true  # docker run -t  # needed to enable debugging with pdb/ipdb
     command: pipenv run python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
