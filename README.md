@@ -49,13 +49,20 @@ docker-compose build
 ```
 One example of when rebuilding Docker would be necessary is after dependencies were changed in Pipfile and Pipfile.lock
 
+## Debugging using [ipdb](https://github.com/gotcha/ipdb)
+
+Insert the following code at the location where you want to break into the debugger:
+```python
+import ipdb; ipdb.set_trace()
+```
+TODO
+
 ## Choices made
 
-- Pipenv
-- I could have specified versions of packages in Pipfile but I haven't done so.
-  Versions are frozen in Pipfile.lock so there is no danger of not specifying them in Pipfile.
-  I will probably come back to this later and specify at least major parts of versions of my direct
-  dependencies solely for the sake of being explicit in the eyes of the reader of this repo.
+- **Pipenv** (see basic usage [here](https://pipenv-fork.readthedocs.io/en/latest/basics.html))  
+  Versions of the whole dependency tree are frozen in Pipfile.lock and for this reason it is ok to have wildcards and
+  ranges instead of specific versions in Pipfile. See [this article](https://realpython.com/pipenv-guide/) for more
+  info.
 
 TODO
 
@@ -113,8 +120,6 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 1) https://docs.docker.com/compose/django/
 1) https://hub.docker.com/_/python
 1) https://github.com/docker-library/faq#whats-the-difference-between-shared-and-simple-tags
-1) https://realpython.com/pipenv-guide/
-1) https://pipenv-fork.readthedocs.io/en/latest/basics.html
 1) https://docs.djangoproject.com/en/3.1/topics/db/models/
 1) https://docs.djangoproject.com/en/3.1/topics/migrations/
 1) https://pythonspeed.com/articles/schema-migrations-server-startup/
@@ -122,6 +127,8 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 
 ### TODO
 
+1) https://odwyer.software/blog/how-to-use-ipdb-with-docker-compose
+1) https://stackoverflow.com/questions/36249744/interactive-shell-using-docker-compose
 1) https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
 1) https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key
 1) https://www.forbes.com/sites/ygrauer/2016/04/20/five-reasons-you-should-stop-shortening-urls/#17ecff623f69
