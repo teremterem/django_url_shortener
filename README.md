@@ -25,6 +25,9 @@
 ```
 docker-compose run web pipenv run python manage.py migrate
 ```
+***This step is required before running the app for the first time.***  
+After that (unless DB models were changed and new DB migrations were added)
+there is no need to migrate DB again.
 
 ## Testing
 
@@ -44,8 +47,7 @@ Then open http://localhost:8000/ in your browser.
 ```
 docker-compose build
 ```
-
-This is necessary when, for ex., dependencies are changed in Pipfile and Pipfile.lock.
+One example of when rebuilding Docker would be necessary is after dependencies were changed in Pipfile and Pipfile.lock
 
 ## Choices made
 
@@ -89,7 +91,7 @@ docker-compose run web pipenv run python manage.py makemigrations
 ### Commands to log into the running Docker container
 
 See [SSH into a Container](
-https://phase2.github.io/devtools/common-tasks/ssh-into-a-container/).
+https://phase2.github.io/devtools/common-tasks/ssh-into-a-container/)
 
 ### Commands that were used to create Django project and app
 
