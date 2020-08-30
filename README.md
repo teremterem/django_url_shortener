@@ -7,7 +7,7 @@
    https://docs.docker.com/engine/install/linux-postinstall/)
 
 ## Clone this repo
-1) Clone this repo with either SSH
+- Clone this repo with either SSH
    ```
    git clone git@github.com:teremterem/django_url_shortener.git
    ```
@@ -16,7 +16,7 @@
    git clone https://github.com/teremterem/django_url_shortener.git
    ```
    or get it any other way that suits you and that GitHub supports
-1) Go into the repo dir (the rest of the instruction assumes
+- Go to the repo dir (the rest of the instruction assumes
    that you're at the top of the repo directory structure)
    ```
    cd django_url_shortener/
@@ -53,11 +53,17 @@ One example of when rebuilding Docker would be necessary is after dependencies w
 
 ## Debug with [ipdb](https://github.com/gotcha/ipdb)
 
-Insert the following code at the location where you want to break into the debugger:
-```python
-import ipdb; ipdb.set_trace()
-```
-TODO
+- Insert the following code at the location where you want to break into the debugger:
+  ```python
+  import ipdb; ipdb.set_trace()
+  ```
+- Run either the app or the tests (depending on what you want to debug and where you inserted the code from the above)
+as was described in previous sections.
+
+You will break into the debugger as soon as python reaches the code from above (pay attention to the console in which
+you ran docker-compose command). See an
+[ipdb cheat sheet](https://wangchuan.github.io/coding/2017/07/12/ipdb-cheat-sheet.html) for quick help on how to
+interact with pdb / ipdb debugger.
 
 ## Choices made
 
@@ -95,8 +101,14 @@ TODO
     (unittest requires you to use it's own assert functions if you want test output to be informative)
 - Describe in this README.md how to use [pdb](https://docs.python.org/3/library/pdb.html)
   to debug Django app inside Docker (as well as how to debug tests).
+- Benchmark url lookup speed (what toolset to use for this?)
 
-## Misc
+### Ideas to further improve url lookup
+
+- Sharding of postgres table across multiple postgres servers
+- Does sharding redis make any sense at all?
+
+## Miscellaneous
 
 ### Command to make DB migrations
 
@@ -129,6 +141,7 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 
 ### TODO
 
+1) https://realpython.com/caching-in-django-with-redis/
 1) https://odwyer.software/blog/how-to-use-ipdb-with-docker-compose
 1) https://stackoverflow.com/questions/36249744/interactive-shell-using-docker-compose
 1) https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
