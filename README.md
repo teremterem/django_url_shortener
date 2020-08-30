@@ -56,20 +56,22 @@ TODO
 
 ## Misc
 
-### Commands that were used to create Django project and app inside Docker
+### Command to make DB migrations
 
 ```shell script
-docker-compose run web pipenv run django-admin startproject django_url_shortener .
-docker-compose run web pipenv run django-admin startapp url_shortener
+docker-compose run web pipenv run python manage.py makemigrations
 ```
 
 ### Command to log into the running Docker container
 
 TODO
 
-### Command to see the Docker container logs
+### Commands that were used to create Django project and app
 
-TODO
+```shell script
+docker-compose run web pipenv run django-admin startproject django_url_shortener .
+docker-compose run web pipenv run django-admin startapp url_shortener
+```
 
 ## References
 
@@ -78,6 +80,7 @@ TODO
 1) https://realpython.com/pipenv-guide/
 1) https://pipenv-fork.readthedocs.io/en/latest/basics.html
 1) https://docs.djangoproject.com/en/3.1/topics/db/models/
+1) https://docs.djangoproject.com/en/3.1/topics/migrations/
 
 ### TODO
 
