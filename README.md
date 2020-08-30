@@ -6,7 +6,7 @@
 1) [Configure Docker to run without sudo (Linux)](
    https://docs.docker.com/engine/install/linux-postinstall/)
 1) Clone this repo with either SSH
-   ```shell script
+   ```
    git clone git@github.com:teremterem/django_url_shortener.git
    ```
    or HTTPS
@@ -16,32 +16,32 @@
    or any other way that suits you and that GitHub supports
 1) Go to the repo dir (the rest of the instruction assumes
    that you're at the top of the repo directory structure)
-   ```shell script
+   ```
    cd django_url_shortener/
    ```
 
 ## Migrating DB
 
-```shell script
+```
 docker-compose run web pipenv run python manage.py migrate
 ```
 
 ## Testing
 
-```shell script
+```
 docker-compose run web pipenv run python manage.py test
 ```
 
 ## Running
 
-```shell script
+```
 docker-compose up
 ```
 Then open http://localhost:8000/ in your browser.
 
 ## Rebuilding
 
-```shell script
+```
 docker-compose build
 ```
 
@@ -67,11 +67,11 @@ TODO
   to make commands that run DB migrations, unit tests etc. shorter.
   - And more than one Dockerfile to separate between prod / non-prod images?  
     For ex. prod version of Dockerfile should contain
-    ```shell script
+    ```
     RUN pipenv install --deploy
     ```
     instead of
-    ```shell script
+    ```
     RUN pipenv install --dev --deploy
     ```
 - Measure test [coverage](https://coverage.readthedocs.io/en/coverage-5.2.1/).
@@ -82,7 +82,7 @@ TODO
 
 ### Command to make DB migrations
 
-```shell script
+```
 docker-compose run web pipenv run python manage.py makemigrations
 ```
 
@@ -93,7 +93,7 @@ https://phase2.github.io/devtools/common-tasks/ssh-into-a-container/).
 
 ### Commands that were used to create Django project and app
 
-```shell script
+```
 docker-compose run web pipenv run django-admin startproject django_url_shortener .
 docker-compose run web pipenv run django-admin startapp url_shortener
 ```
