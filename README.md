@@ -48,6 +48,10 @@ docker-compose build
 ## Choices made
 
 - Pipenv
+- I could have specified versions of packages in Pipfile but I haven't done so.
+  Versions are frozen in Pipfile.lock so there is no danger of not specifying them in Pipfile.
+  I will probably come back to this later and specify at least major parts of versions of my direct
+  dependencies solely for the sake of being explicit in the eyes of the reader of this repo.
 
 TODO
 
@@ -68,9 +72,10 @@ TODO
 docker-compose run web pipenv run python manage.py makemigrations
 ```
 
-### Command to log into the running Docker container
+### Commands to log into the running Docker container
 
-TODO
+See [SSH into a Container](
+https://phase2.github.io/devtools/common-tasks/ssh-into-a-container/).
 
 ### Commands that were used to create Django project and app
 
@@ -83,6 +88,8 @@ docker-compose run web pipenv run django-admin startapp url_shortener
 
 1) https://choosealicense.com/
 1) https://docs.docker.com/compose/django/
+1) https://hub.docker.com/_/python
+1) https://github.com/docker-library/faq#whats-the-difference-between-shared-and-simple-tags
 1) https://realpython.com/pipenv-guide/
 1) https://pipenv-fork.readthedocs.io/en/latest/basics.html
 1) https://docs.djangoproject.com/en/3.1/topics/db/models/

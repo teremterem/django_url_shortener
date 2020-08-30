@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.8.5
 
 ENV PYTHONUNBUFFERED 1
 # https://stackoverflow.com/questions/59812009/what-is-the-use-of-pythonunbuffered-in-docker-file
