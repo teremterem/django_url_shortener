@@ -20,17 +20,17 @@
    cd django_url_shortener/
    ```
 
-### Migrating DB
+## Migrating DB
 
 ```shell script
 docker-compose run web pipenv run python manage.py migrate
 ```
 
-### Testing
+## Testing
 
 TODO
 
-### Running
+## Running
 
 ```shell script
 docker-compose up
@@ -58,6 +58,7 @@ TODO
   https://asgi.readthedocs.io/en/latest/)).
 - Use [multiple docker compose files](
   https://runnable.com/docker/advanced-docker-compose-configuration#using-multiple-docker-compose-files) to make commands that run DB migrations, unit tests etc. shorter.
+- Measure test [coverage](https://coverage.readthedocs.io/en/coverage-5.2.1/).
 
 ## Misc
 
