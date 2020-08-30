@@ -28,7 +28,9 @@ docker-compose run web pipenv run python manage.py migrate
 
 ## Testing
 
-TODO
+```shell script
+docker-compose run web pipenv run python manage.py test
+```
 
 ## Running
 
