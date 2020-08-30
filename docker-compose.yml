@@ -14,6 +14,8 @@ services:
     stdin_open: true  # docker run -i  # needed to enable debugging with pdb/ipdb
     tty: true  # docker run -t  # needed to enable debugging with pdb/ipdb
     command: pipenv run python manage.py runserver 0.0.0.0:8000
+    environment:
+      - IPDB_CONTEXT_SIZE=9  # number of lines of code for ipdb to show
     volumes:
       - .:/code
     ports:
