@@ -1,10 +1,12 @@
 # Django URL Shortener
 
-## Installation
+## Install Docker Compose
 
-1) [Install Docker Compose](https://docs.docker.com/compose/install/)
-1) [Configure Docker to run without sudo (Linux)](
+- [Install Docker Compose](https://docs.docker.com/compose/install/)
+- [Configure Docker to run without sudo (Linux)](
    https://docs.docker.com/engine/install/linux-postinstall/)
+
+## Clone this repo
 1) Clone this repo with either SSH
    ```
    git clone git@github.com:teremterem/django_url_shortener.git
@@ -13,43 +15,43 @@
    ```
    git clone https://github.com/teremterem/django_url_shortener.git
    ```
-   or any other way that suits you and that GitHub supports
-1) Go to the repo dir (the rest of the instruction assumes
+   or get it any other way that suits you and that GitHub supports
+1) Go into the repo dir (the rest of the instruction assumes
    that you're at the top of the repo directory structure)
    ```
    cd django_url_shortener/
    ```
 
-## Migrating DB
+## Migrate DB
 
 ```
 docker-compose run --rm web pipenv run python manage.py migrate
 ```
 ***This step is required before running the app for the first time.***  
-After that (unless DB models were changed and new DB migrations were added)
+After that (and unless DB models were changed and new DB migrations were added)
 there is no need to migrate DB again.
 
-## Testing
+## Test
 
 ```
 docker-compose run --rm web pipenv run python manage.py test
 ```
 
-## Running
+## Run
 
 ```
 docker-compose up
 ```
 Then open http://localhost:8000/ in your browser.
 
-## Rebuilding
+## Rebuild
 
 ```
 docker-compose build
 ```
 One example of when rebuilding Docker would be necessary is after dependencies were changed in Pipfile and Pipfile.lock
 
-## Debugging using [ipdb](https://github.com/gotcha/ipdb)
+## Debug with [ipdb](https://github.com/gotcha/ipdb)
 
 Insert the following code at the location where you want to break into the debugger:
 ```python
