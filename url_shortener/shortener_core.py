@@ -17,7 +17,7 @@ MIN_ORD = min(ord(c) for c in URL_ALPHABET)
 MAX_ORD = max(ord(c) for c in URL_ALPHABET)
 
 
-def _generate_url_alphabet_translations():
+def _generate_url_alphabet_translations_tuple():
     trans_list = [None] * (MAX_ORD - MIN_ORD + 1)
 
     for number, symbol in enumerate(URL_ALPHABET):
@@ -26,7 +26,10 @@ def _generate_url_alphabet_translations():
     return tuple(trans_list)
 
 
-URL_ALPHABET_TRANSLATIONS = _generate_url_alphabet_translations()
+# This tuple exists to speed up conversion from string handle to number. It is expected to be somewhat bigger than the
+# alphabet (64 symbols) because ASCII symbols of the alphabet aren't always adjacent in ASCII table (they are close
+# enough to each other however, plus the whole ASCII table is not too big even if they weren't).
+URL_ALPHABET_TRANSLATIONS = _generate_url_alphabet_translations_tuple()
 
 
 def generate_url_handle():
@@ -35,7 +38,9 @@ def generate_url_handle():
 
 def convert_url_handle_to_number(url_handle):
     """
-    This method expects URL_ALPHABET to be exactly 64 characters big
+    This method expects URL_ALPHABET to be exactly 64 characters big. It is designed to do convert string handles to
+    numbers as quickly as possible and thus relies on the existence of URL_ALPHABET_TRANSLATIONS table (tuple) as well
+    as on the fact that 64 == 2**6 which allows us to leverage from bitwise left shift.
     """
     # TODO
     pass

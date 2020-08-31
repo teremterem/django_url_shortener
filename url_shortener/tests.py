@@ -3,7 +3,8 @@ from unittest.mock import patch
 from django.test import TestCase
 
 from url_shortener.models import ShortenedUrl
-from url_shortener.shortener_core import URL_ALPHABET, URL_HANDLE_LEN, generate_url_handle
+from url_shortener.shortener_core import URL_ALPHABET, URL_HANDLE_LEN, generate_url_handle, URL_ALPHABET_TRANSLATIONS, \
+    MAX_ORD, MIN_ORD
 
 
 class TestTestCase(TestCase):
@@ -47,7 +48,7 @@ class TestShortenerCore(TestCase):
 
     def test_url_alphabet_size(self):
         """
-        Make sure alphabet contains 64 distinct characters.
+        Make sure alphabet contains exactly 64 distinct characters.
         """
         self.assertEqual(len({c for c in URL_ALPHABET}), 64)
         self.assertEqual(len(URL_ALPHABET), 64, msg='duplicate characters found in URL_ALPHABET')
@@ -98,4 +99,9 @@ class TestShortenerCore(TestCase):
         """
         Make sure character to number translations in URL_ALPHABET_TRANSLATIONS tuple roughly make sense.
         """
-        pass
+        self.assertEqual(len(URL_ALPHABET_TRANSLATIONS), MAX_ORD - MIN_ORD + 1)
+        self.assertGreaterEqual(len(URL_ALPHABET_TRANSLATIONS), len(URL_ALPHABET))
+        self.assertCountEqual(
+            [number for number in URL_ALPHABET_TRANSLATIONS if number is not None],
+            list(range(len(URL_ALPHABET))),
+        )
