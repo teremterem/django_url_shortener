@@ -87,6 +87,7 @@ TODO
 - Inspiration: https://pypi.org/project/short_url/
 - https://en.wikipedia.org/wiki/Universally_unique_identifier
 - https://stackoverflow.com/questions/33836749/postgresql-using-uuid-vs-text-as-primary-key
+- https://docs.python.org/3/library/secrets.html#recipes-and-best-practices
 
 TODO
 

@@ -54,4 +54,8 @@ class TestShortenerCore(TestCase):
         """
         Make sure URL handle can be stored in Postgres int8.
         """
-        self.assertLessEqual(len(URL_ALPHABET) ** URL_HANDLE_LEN - 1, 256 ** 8 // 2 - 1)
+        self.assertLessEqual(
+            len(URL_ALPHABET) ** URL_HANDLE_LEN - 1,
+            256 ** 8 // 2 - 1,
+            'URL handle cannot be stored in Postgres int8',
+        )
