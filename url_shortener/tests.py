@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from url_shortener.models import ShortenedUrl
-from url_shortener.shortener_core import URL_ALPHABET
+from url_shortener.shortener_core import URL_ALPHABET, URL_HANDLE_LEN
 
 
 class TestTestCase(TestCase):
@@ -49,3 +49,9 @@ class TestShortenerCore(TestCase):
         """
         self.assertEqual(len({c for c in URL_ALPHABET}), 64)
         self.assertEqual(len(URL_ALPHABET), 64, msg='duplicate characters found in URL_ALPHABET')
+
+    def test_url_handle_storable_in_int8(self):
+        """
+        Make sure URL handle can be stored in Postgres int8.
+        """
+        self.assertLessEqual(len(URL_ALPHABET) ** URL_HANDLE_LEN - 1, 256 ** 8 // 2 - 1)
