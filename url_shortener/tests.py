@@ -45,9 +45,7 @@ class TestShortenerCore(TestCase):
 
     def test_url_alphabet_size(self):
         """
-        Make sure alphabet contains 52 distinct characters
-        (lowercase and uppercase letters, numbers, +, -, _,
-        but not i, I, l, 1, o, O, 0 because these chars may visually resemble each other).
+        Make sure alphabet contains 64 distinct characters.
         """
-        self.assertEqual(len({c for c in URL_ALPHABET}), 58)
-        self.assertEqual(len(URL_ALPHABET), 58, msg='duplicate characters found in URL_ALPHABET')
+        self.assertEqual(len({c for c in URL_ALPHABET}), 64)
+        self.assertEqual(len(URL_ALPHABET), 64, msg='duplicate characters found in URL_ALPHABET')
