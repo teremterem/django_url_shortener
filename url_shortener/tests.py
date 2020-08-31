@@ -96,6 +96,6 @@ class TestShortenerCore(TestCase):
 
     def test_url_alphabet_translations(self):
         """
-        Make sure ord(char) to "digit" translations in URL_ALPHABET_TRANSLATION tuple seem reasonable.
+        Make sure character to number translations in URL_ALPHABET_TRANSLATIONS tuple roughly make sense.
         """
         pass

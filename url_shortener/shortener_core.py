@@ -20,8 +20,8 @@ MAX_ORD = max(ord(c) for c in URL_ALPHABET)
 def _generate_url_alphabet_translations():
     trans_list = [None] * (MAX_ORD - MIN_ORD + 1)
 
-    for digit, chr in enumerate(URL_ALPHABET):
-        trans_list[ord(chr) - MIN_ORD] = digit
+    for number, symbol in enumerate(URL_ALPHABET):
+        trans_list[ord(symbol) - MIN_ORD] = number
 
     return tuple(trans_list)
 
