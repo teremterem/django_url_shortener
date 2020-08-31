@@ -40,7 +40,10 @@ def convert_url_handle_to_number(url_handle):
     """
     This method expects URL_ALPHABET to be exactly 64 characters big. It is designed to do convert string handles to
     numbers as quickly as possible and thus relies on the existence of URL_ALPHABET_TRANSLATIONS table (tuple) as well
-    as on the fact that 64 == 2**6 which allows us to leverage from bitwise left shift.
+    as on the fact that 64 == 2**6 which allows us to leverage from bitwise shift to the left.
     """
-    # TODO
-    pass
+    number = 0
+    for symbol in url_handle:
+        number <<= 6
+        number ^= URL_ALPHABET_TRANSLATIONS[ord(symbol) - MIN_ORD]
+    return number
