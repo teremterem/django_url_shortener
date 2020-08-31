@@ -1,0 +1,2 @@
+
+URL_ALPHABET = '+-_23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz'

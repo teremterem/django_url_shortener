@@ -81,6 +81,15 @@ interact with ipdb debugger.
 
 TODO
 
+### Attempt to improve url lookup performance
+
+- https://realpython.com/lessons/cryptographically-secure-random-data-python/
+- Inspiration: https://pypi.org/project/short_url/
+- https://en.wikipedia.org/wiki/Universally_unique_identifier
+- https://stackoverflow.com/questions/33836749/postgresql-using-uuid-vs-text-as-primary-key
+
+TODO
+
 ## Areas of improvement
 
 - Switch from Django built-in web server to [a production grade web server](

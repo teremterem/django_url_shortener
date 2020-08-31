@@ -1,11 +1,12 @@
 from django.test import TestCase
 
 from url_shortener.models import ShortenedUrl
+from url_shortener.shortener_core import URL_ALPHABET
 
 
 class TestTestCase(TestCase):
     """
-    Test the tests (make sure interactions with the database are isolated).
+    Test the tests (make sure test interactions with the database are isolated).
     """
 
     def test_only_one_table_row_1(self):
@@ -35,3 +36,18 @@ class TestTestCase(TestCase):
         rows = ShortenedUrl.objects.all()
         uuid_list = [u.url_uuid for u in rows]
         self.assertCountEqual(uuid_list, ['uuid3', 'uuid4'])
+
+
+class TestShortenerCore(TestCase):
+    """
+    Test shortener_core.py module.
+    """
+
+    def test_url_alphabet_size(self):
+        """
+        Make sure alphabet contains 52 distinct characters
+        (lowercase and uppercase letters, numbers, +, -, _,
+        but not i, I, l, 1, o, O, 0 because these chars may visually resemble each other).
+        """
+        self.assertEqual(len({c for c in URL_ALPHABET}), 58)
+        self.assertEqual(len(URL_ALPHABET), 58, msg='duplicate characters found in URL_ALPHABET')
