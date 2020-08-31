@@ -77,14 +77,12 @@ class TestShortenerCore(TestCase):
 
         mock_secrets_choice.side_effect = _fake_choice
 
-        handles = [generate_url_handle() for _ in range(20)]
+        handles = [generate_url_handle() for _ in range(7)]
         # print(handles)
 
         self.assertEqual(
             handles,
-            ['abcdefghij', 'klmnopqrst', 'uvwxyzABCD', 'EFGHIJKLMN', 'OPQRSTUVWX', 'YZ01234567', '89-_abcdef',
-             'ghijklmnop', 'qrstuvwxyz', 'ABCDEFGHIJ', 'KLMNOPQRST', 'UVWXYZ0123', '456789-_ab', 'cdefghijkl',
-             'mnopqrstuv', 'wxyzABCDEF', 'GHIJKLMNOP', 'QRSTUVWXYZ', '0123456789', '-_abcdefgh'],
+            ['abcdefghij', 'klmnopqrst', 'uvwxyzABCD', 'EFGHIJKLMN', 'OPQRSTUVWX', 'YZ01234567', '89-_abcdef'],
         )
 
     def test_generate_url_handle(self):
@@ -95,3 +93,9 @@ class TestShortenerCore(TestCase):
 
         self.assertEqual(type(handle), str)
         self.assertEqual(len(handle), 10)
+
+    def test_url_alphabet_translations(self):
+        """
+        Make sure ord(char) to "digit" translations in URL_ALPHABET_TRANSLATION tuple seem reasonable.
+        """
+        pass

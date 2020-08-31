@@ -122,6 +122,8 @@ TODO
 - Switch from Django template with a form to REST and JSON ([is CSRF concern relevant in case of REST?](
   https://security.stackexchange.com/questions/166724/should-i-use-csrf-protection-on-rest-api-endpoints)) for url
   shortening to make this service headless (and attach a simple jQuery based UI page to it).
+- Turn url expander view into Django middleware ? (to avoid the overhead of url resolution).
+- Cover Django views with tests as well.
 
 ### Ideas to further improve url lookup
 
