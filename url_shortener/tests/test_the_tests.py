@@ -12,26 +12,26 @@ class TestTestCase(TestCase):
         """
         Make sure test_only_one_table_row_1 and test_only_one_table_row_2 don't influence each other.
         """
-        ShortenedUrl.objects.create(id='111')
+        ShortenedUrl.objects.create(id=111)
 
         rows = ShortenedUrl.objects.all()
         id_list = [row.id for row in rows]
-        self.assertCountEqual(id_list, ['111'])
+        self.assertCountEqual(id_list, [111])
 
     def test_only_one_table_row_2(self):
         """
         Make sure test_only_one_table_row_1 and test_only_one_table_row_2 don't influence each other.
         """
-        ShortenedUrl.objects.create(id='222')
+        ShortenedUrl.objects.create(id=222)
 
         rows = ShortenedUrl.objects.all()
         id_list = [row.id for row in rows]
-        self.assertCountEqual(id_list, ['222'])
+        self.assertCountEqual(id_list, [222])
 
     def test_two_table_rows(self):
-        ShortenedUrl.objects.create(id='444')
-        ShortenedUrl.objects.create(id='333')
+        ShortenedUrl.objects.create(id=444)
+        ShortenedUrl.objects.create(id=333)
 
         rows = ShortenedUrl.objects.all()
         id_list = [row.id for row in rows]
-        self.assertCountEqual(id_list, ['333', '444'])
+        self.assertCountEqual(id_list, [333, 444])
