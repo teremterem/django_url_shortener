@@ -2,8 +2,8 @@ from unittest.mock import patch
 
 from django.test import TestCase
 
-from url_shortener.models import ShortenedUrl
-from url_shortener.shortener_core import URL_ALPHABET, URL_HANDLE_LEN, generate_url_handle, URL_ALPHABET_TRANSLATIONS, \
+from ..models import ShortenedUrl
+from ..shortener_core import URL_ALPHABET, URL_HANDLE_LEN, generate_url_handle, URL_ALPHABET_TRANSLATIONS, \
     convert_url_handle_to_number
 
 

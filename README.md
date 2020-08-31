@@ -78,6 +78,7 @@ interact with ipdb debugger.
   Versions of the whole dependency tree are frozen in Pipfile.lock and for this reason it is ok to have wildcards and
   ranges instead of specific versions in Pipfile. See [this article](https://realpython.com/pipenv-guide/) for more
   info.
+- Shortly.cc urls are super short (5 chars currently - which is max 1 billion urls in case of 64 letters).
 
 TODO
 
