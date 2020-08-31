@@ -3,8 +3,7 @@ from unittest.mock import patch
 from django.test import TestCase
 
 from url_shortener.models import ShortenedUrl
-from url_shortener.shortener_core import URL_ALPHABET, URL_HANDLE_LEN, generate_url_handle, URL_ALPHABET_TRANSLATIONS, \
-    MAX_ORD, MIN_ORD
+from url_shortener.shortener_core import URL_ALPHABET, URL_HANDLE_LEN, generate_url_handle, URL_ALPHABET_TRANSLATIONS
 
 
 class TestTestCase(TestCase):
@@ -99,7 +98,6 @@ class TestShortenerCore(TestCase):
         """
         Make sure character to number translations in URL_ALPHABET_TRANSLATIONS tuple roughly make sense.
         """
-        self.assertEqual(len(URL_ALPHABET_TRANSLATIONS), MAX_ORD - MIN_ORD + 1)
         self.assertGreaterEqual(len(URL_ALPHABET_TRANSLATIONS), len(URL_ALPHABET))
         self.assertCountEqual(
             [number for number in URL_ALPHABET_TRANSLATIONS if number is not None],
