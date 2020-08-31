@@ -4,14 +4,16 @@ https://docs.python.org/3/library/secrets.html#recipes-and-best-practices
 import secrets
 import string
 
-# Number of distinct url handle values:                                64 ** 10 - 1  ==  1152921504606846975
-# Biggest positive value of 8-byte signed int (aka signed long):  256 ** 8 // 2 - 1  ==  9223372036854775807
+# Highest URL HANDLE value of length 5:                                 64 ** 5 - 1  ==              1 073 741 823
+# Highest URL HANDLE value of length 6:                                 64 ** 6 - 1  ==             68 719 476 735
+# Highest URL HANDLE value of length 7:                                 64 ** 7 - 1  ==          4 398 046 511 103
 #
-# (64 ** 10 - 1  <=  256 ** 8 // 2 - 1)  is  True
+# Biggest positive value of 4-byte signed int:                    256 ** 4 // 2 - 1  ==              2 147 483 647
+# Biggest positive value of 8-byte signed int (aka signed long):  256 ** 8 // 2 - 1  ==  9 223 372 036 854 775 807
 #
-# CONCLUSION: numberic representation of URL HANDLE can be stored in Postgres as int8
+# CONCLUSION: numeric representation of URL HANDLE of length 7 can be stored in Postgres as int8 (and not as int4)
 URL_ALPHABET = string.ascii_lowercase + string.ascii_uppercase + string.digits + '-_'  # 64 distinct characters
-URL_HANDLE_LEN = 10
+URL_HANDLE_LEN = 7
 
 
 def _generate_url_alphabet_translations_tuple():

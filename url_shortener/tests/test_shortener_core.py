@@ -43,22 +43,23 @@ class TestShortenerCore(TestCase):
 
         mock_secrets_choice.side_effect = _fake_choice
 
-        handles = [generate_url_handle() for _ in range(7)]
+        handles = [generate_url_handle() for _ in range(10)]
         # print(handles)
 
         self.assertEqual(
             handles,
-            ['abcdefghij', 'klmnopqrst', 'uvwxyzABCD', 'EFGHIJKLMN', 'OPQRSTUVWX', 'YZ01234567', '89-_abcdef'],
+            ['abcdefg', 'hijklmn', 'opqrstu', 'vwxyzAB', 'CDEFGHI', 'JKLMNOP', 'QRSTUVW', 'XYZ0123', '456789-',
+             '_abcdef'],
         )
 
     def test_generate_url_handle(self):
         """
-        Verify that unmocked version of generate_url_handle function works (generates string handles of length 10).
+        Verify that unmocked version of generate_url_handle function works (generates string handles of length 7).
         """
         handle = generate_url_handle()
 
         self.assertEqual(type(handle), str)
-        self.assertEqual(len(handle), 10)
+        self.assertEqual(len(handle), 7)
 
     def test_url_alphabet_translations(self):
         """
