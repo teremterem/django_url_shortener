@@ -3,7 +3,8 @@ from unittest.mock import patch
 from django.test import TestCase
 
 from url_shortener.models import ShortenedUrl
-from url_shortener.shortener_core import URL_ALPHABET, URL_HANDLE_LEN, generate_url_handle, URL_ALPHABET_TRANSLATIONS
+from url_shortener.shortener_core import URL_ALPHABET, URL_HANDLE_LEN, generate_url_handle, URL_ALPHABET_TRANSLATIONS, \
+    convert_url_handle_to_number
 
 
 class TestTestCase(TestCase):
@@ -103,3 +104,10 @@ class TestShortenerCore(TestCase):
             [number for number in URL_ALPHABET_TRANSLATIONS if number is not None],
             list(range(len(URL_ALPHABET))),
         )
+
+    def test_convert_url_handle_to_number(self):
+        """
+        Verify that convert_url_handle_to_number('Hello') returns
+        33*64**4 + 4*64**3 + 11*64**2 + 11*64 + 14 == 554742478
+        """
+        self.assertEqual(convert_url_handle_to_number('Hello'), 554742478)
