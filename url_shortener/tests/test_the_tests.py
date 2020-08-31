@@ -12,26 +12,26 @@ class TestTestCase(TestCase):
         """
         Make sure test_only_one_table_row_1 and test_only_one_table_row_2 don't influence each other.
         """
-        ShortenedUrl.objects.create(url_uuid='uuid1')
+        ShortenedUrl.objects.create(id='111')
 
         rows = ShortenedUrl.objects.all()
-        uuid_list = [u.url_uuid for u in rows]
-        self.assertCountEqual(uuid_list, ['uuid1'])
+        id_list = [row.id for row in rows]
+        self.assertCountEqual(id_list, ['111'])
 
     def test_only_one_table_row_2(self):
         """
         Make sure test_only_one_table_row_1 and test_only_one_table_row_2 don't influence each other.
         """
-        ShortenedUrl.objects.create(url_uuid='uuid2')
+        ShortenedUrl.objects.create(id='222')
 
         rows = ShortenedUrl.objects.all()
-        uuid_list = [u.url_uuid for u in rows]
-        self.assertCountEqual(uuid_list, ['uuid2'])
+        id_list = [row.id for row in rows]
+        self.assertCountEqual(id_list, ['222'])
 
     def test_two_table_rows(self):
-        ShortenedUrl.objects.create(url_uuid='uuid3')
-        ShortenedUrl.objects.create(url_uuid='uuid4')
+        ShortenedUrl.objects.create(id='444')
+        ShortenedUrl.objects.create(id='333')
 
         rows = ShortenedUrl.objects.all()
-        uuid_list = [u.url_uuid for u in rows]
-        self.assertCountEqual(uuid_list, ['uuid3', 'uuid4'])
+        id_list = [row.id for row in rows]
+        self.assertCountEqual(id_list, ['333', '444'])
