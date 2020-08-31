@@ -110,4 +110,5 @@ class TestShortenerCore(TestCase):
         Verify that convert_url_handle_to_number('Hello') returns
         33*64**4 + 4*64**3 + 11*64**2 + 11*64 + 14 == 554742478
         """
-        self.assertEqual(convert_url_handle_to_number('Hello'), 554742478)
+        number = convert_url_handle_to_number('Hello')
+        self.assertEqual(number, 554742478)

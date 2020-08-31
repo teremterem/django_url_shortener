@@ -124,6 +124,7 @@ TODO
   shortening to make this service headless (and attach a simple jQuery based UI page to it).
 - Turn url expander view into Django middleware ? (to avoid the overhead of url resolution).
 - Cover Django views with tests as well.
+- Turn some of the unit tests into doctests?
 
 ### Ideas to further improve url lookup
 
