@@ -13,22 +13,20 @@ import string
 URL_ALPHABET = string.ascii_lowercase + string.ascii_uppercase + string.digits + '-_'  # 64 distinct characters
 URL_HANDLE_LEN = 10
 
-MIN_ORD = min(ord(c) for c in URL_ALPHABET)
-MAX_ORD = max(ord(c) for c in URL_ALPHABET)
-
 
 def _generate_url_alphabet_translations_tuple():
-    trans_list = [None] * (MAX_ORD - MIN_ORD + 1)
+    trans_list = [None] * (max(ord(c) for c in URL_ALPHABET) + 1)
 
     for number, symbol in enumerate(URL_ALPHABET):
-        trans_list[ord(symbol) - MIN_ORD] = number
+        trans_list[ord(symbol)] = number
 
-    return tuple(trans_list)
+    return tuple(trans_list)  # indexing in tuple is faster than in list
 
 
 # This tuple exists to speed up conversion from string handle to number. It is expected to be somewhat bigger than the
-# alphabet (64 symbols) because ASCII symbols of the alphabet aren't always adjacent in ASCII table (they are close
-# enough to each other however, plus the whole ASCII table is not too big even if they weren't).
+# alphabet (64 symbols) because ASCII symbols of the alphabet aren't all adjacent in ASCII table (they are close enough
+# to each other and to the beginning of the table, however; plus the whole ASCII table is not too big even if they
+# weren't).
 URL_ALPHABET_TRANSLATIONS = _generate_url_alphabet_translations_tuple()
 
 
