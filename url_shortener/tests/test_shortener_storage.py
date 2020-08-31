@@ -35,4 +35,4 @@ class TestShortenerStorage(TestCase):
 
         rows = ShortenedUrl.objects.all()
         id_list = [(row.id, row.long_url) for row in rows]
-        self.assertCountEqual(id_list, [convert_url_handle_to_number(url_handle), 'https://someurl3.io/index.html'])
+        self.assertCountEqual(id_list, [(convert_url_handle_to_number(url_handle), 'https://someurl3.io/index.html']))
