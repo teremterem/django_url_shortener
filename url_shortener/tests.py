@@ -1,7 +1,9 @@
+from unittest.mock import patch
+
 from django.test import TestCase
 
 from url_shortener.models import ShortenedUrl
-from url_shortener.shortener_core import URL_ALPHABET, URL_HANDLE_LEN
+from url_shortener.shortener_core import URL_ALPHABET, URL_HANDLE_LEN, generate_url_handle
 
 
 class TestTestCase(TestCase):
@@ -57,5 +59,39 @@ class TestShortenerCore(TestCase):
         self.assertLessEqual(
             len(URL_ALPHABET) ** URL_HANDLE_LEN - 1,
             256 ** 8 // 2 - 1,
-            'URL handle cannot be stored in Postgres int8',
+            msg='URL handle cannot be stored in Postgres int8',
         )
+
+    @patch('secrets.choice')
+    def test_generate_url_handle_mocked_secrets(self, mock_secrets_choice):
+        """
+        Verify that url handles are predictable when secrets.choice is mocked (this test serves as an "alert" to draw
+        developer's attention in case behaviour of generate_url_handle function changes for some reason).
+        """
+        char_pos = -1
+
+        def _fake_choice(alph):
+            nonlocal char_pos
+            char_pos += 1
+            return alph[char_pos % len(alph)]
+
+        mock_secrets_choice.side_effect = _fake_choice
+
+        handles = [generate_url_handle() for _ in range(20)]
+        # print(handles)
+
+        self.assertEqual(
+            handles,
+            ['abcdefghij', 'klmnopqrst', 'uvwxyzABCD', 'EFGHIJKLMN', 'OPQRSTUVWX', 'YZ01234567', '89-_abcdef',
+             'ghijklmnop', 'qrstuvwxyz', 'ABCDEFGHIJ', 'KLMNOPQRST', 'UVWXYZ0123', '456789-_ab', 'cdefghijkl',
+             'mnopqrstuv', 'wxyzABCDEF', 'GHIJKLMNOP', 'QRSTUVWXYZ', '0123456789', '-_abcdefgh'],
+        )
+
+    def test_generate_url_handle(self):
+        """
+        Verify that unmocked version of generate_url_handle function works (generates string handles of length 10).
+        """
+        handle = generate_url_handle()
+
+        self.assertEqual(type(handle), str)
+        self.assertEqual(len(handle), 10)

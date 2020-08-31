@@ -119,6 +119,9 @@ TODO
 - Describe in this README.md how to use [pdb](https://docs.python.org/3/library/pdb.html)
   to debug Django app inside Docker (as well as how to debug tests).
 - Benchmark url lookup speed (what toolset to use for this?)
+- Switch from Django template with a form to REST and JSON ([is CSRF concern relevant in case of REST?](
+  https://security.stackexchange.com/questions/166724/should-i-use-csrf-protection-on-rest-api-endpoints)) for url
+  shortening to make this service headless (and attach a simple jQuery based UI page to it).
 
 ### Ideas to further improve url lookup
 
@@ -157,6 +160,7 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 1) https://docs.djangoproject.com/en/3.1/topics/testing/overview/
 1) https://odwyer.software/blog/how-to-use-ipdb-with-docker-compose
 1) https://stackoverflow.com/questions/36249744/interactive-shell-using-docker-compose
+1) https://docs.python.org/3/library/unittest.mock.html
 
 ### TODO
 
