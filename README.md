@@ -126,6 +126,7 @@ TODO
 - Turn url expander view into Django middleware ? (to avoid the overhead of url resolution).
 - Cover Django views with tests as well.
 - Turn some of the unit tests into doctests?
+- Validate that it is indeed a url that is being shortened
 
 ### Ideas to further improve url lookup
 
