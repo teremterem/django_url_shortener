@@ -20,7 +20,7 @@ def _generate_url_alphabet_translations_tuple():
     for number, symbol in enumerate(URL_ALPHABET):
         trans_list[ord(symbol)] = number
 
-    return tuple(trans_list)  # indexing in tuple is faster than in list
+    return tuple(trans_list)  # indexing is faster in a tuple rather than in a list
 
 
 # This tuple exists to speed up conversion from string handle to number. It is expected to be somewhat bigger than the
@@ -43,5 +43,5 @@ def convert_url_handle_to_number(url_handle):
     number = 0
     for symbol in url_handle:
         number <<= 6
-        number ^= URL_ALPHABET_TRANSLATIONS[ord(symbol) - MIN_ORD]
+        number ^= URL_ALPHABET_TRANSLATIONS[ord(symbol)]
     return number
