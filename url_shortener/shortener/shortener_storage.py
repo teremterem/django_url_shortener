@@ -1,7 +1,11 @@
+import logging
+
 from django.db import transaction, IntegrityError
 
 from .shortener_core import generate_url_handle, convert_url_handle_to_number
 from ..models import ShortenedUrl
+
+log = logging.getLogger(__name__)
 
 SHORTEN_ATTEMPT_COUNT = 5
 
@@ -34,6 +38,7 @@ def shorten_url(long_url):
 
 def expand_url(url_handle):
     # TODO cover this function with unit test(s)
+    log.debug('Expanding %s', url_handle)
     try:
         return ShortenedUrl.objects.get(id=convert_url_handle_to_number(url_handle)).long_url
     except ShortenedUrl.DoesNotExist:
