@@ -42,7 +42,7 @@ class TestShortenerStorage(TestCase):
         )
 
     @patch.object(shortener_storage, 'generate_url_handle')
-    def test_shorten_url_collision_of_handle(self, mock_generate_url_handle):
+    def test_shorten_url_collision_of_url_handle(self, mock_generate_url_handle):
         """
         Make sure shorten_url retries handle generation up to 5 times in case of collision (64**7 distinct values is
         not too many - collisions are possible).
@@ -51,7 +51,7 @@ class TestShortenerStorage(TestCase):
         def _fake_generate():
             nonlocal generate_count
             generate_count += 1
-            if generate_count > 2:  # change value issuing two identical url handles
+            if generate_count > 2:  # change value only after issuing two identical url handles in a row
                 return 'ea'
             return 'da'
 
@@ -68,23 +68,26 @@ class TestShortenerStorage(TestCase):
         self.assertEqual(mock_generate_url_handle.call_count, 1 + 3)
 
     @patch.object(shortener_storage, 'generate_url_handle')
-    def test_shorten_url_more_than_5_collisions(self, mock_generate_url_handle):
+    def test_shorten_url_more_than_5_url_handle_collisions(self, mock_generate_url_handle):
         """
-        Make sure shorten_url does not retry handle generation more than 5 times (protect ourselves from an accidental
-        infinite loop, for example).
+        Make sure shorten_url does not try to generate url handle more than 5 times (protect ourselves from an
+        accidental infinite loop due to some bug in the code).
         """
         mock_generate_url_handle.return_value = 'fa'
+
         shortener_storage.shorten_url('http://someurl6/')
         shortener_storage.shorten_url('http://someurl7/')
 
         rows = ShortenedUrl.objects.all()
         tuple_list = [(row.id, row.long_url) for row in rows]
-        self.assertCountEqual(tuple_list, [(192, 'http://someurl4/')])
+        self.assertCountEqual(tuple_list, [(320, 'http://someurl6/')])
+        self.assertEqual(mock_generate_url_handle.call_count, 1 + 5)
+        # TODO verify exception thrown
 
     @patch.object(shortener_storage, 'generate_url_handle')
     def test_shorten_url_some_other_exception(self, mock_generate_url_handle):
         """
-        Make sure an arbitrary exception doesn't lead to retries (retries are only for collisions).
+        Make sure an arbitrary exception doesn't lead to retrying (retrying is only for collisions).
         """
 
         def _raise_error():
@@ -92,8 +95,9 @@ class TestShortenerStorage(TestCase):
 
         mock_generate_url_handle.side_effect = _raise_error
         shortener_storage.shorten_url('http://someurl8/')
-        shortener_storage.shorten_url('http://someurl9/')
 
         rows = ShortenedUrl.objects.all()
         tuple_list = [(row.id, row.long_url) for row in rows]
         self.assertCountEqual(tuple_list, [(192, 'http://someurl4/')])
+        self.assertEqual(mock_generate_url_handle.call_count, 1)
+        # TODO verify exception thrown

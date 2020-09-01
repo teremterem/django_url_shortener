@@ -11,6 +11,8 @@ def shorten_url(long_url):
     64**7 distinct values is not too many - collisions are possible. For this reason this function will try to generate
     url handle and attempt to store it up to 5 times (only one time if collision doesn't happen).
     """
+    integrity_error = None
+
     for _ in range(SHORTEN_ATTEMPT_COUNT):
         url_handle = generate_url_handle()
         try:
@@ -19,8 +21,13 @@ def shorten_url(long_url):
                     id=convert_url_handle_to_number(url_handle),
                     long_url=long_url,
                 )
-        except IntegrityError:
+        except IntegrityError as e:
+            integrity_error = e
             continue  # looks like generated url_handle already exists - retrying...
         break  # no collision - exiting the loop...
+
+    if integrity_error:
+        # integrity error persisted even after five attempts - re-raising...
+        raise integrity_error
 
     return url_handle
