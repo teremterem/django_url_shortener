@@ -17,9 +17,13 @@ class TestShortenerStorage(TestCase):
         """
         Populate several shortened url in the database.
         """
-        ShortenedUrl.objects.create(id=129, long_url='https://someurl1.com/test')  # url_handle=='cb'
-        ShortenedUrl.objects.create(id=65, long_url='https://someurl2.com/test')  # url_handle=='bb'
-        ShortenedUrl.objects.create(id=130, long_url='https://someurl3.com/test')  # url_handle=='cd'
+        self.populated_short_url_tuples = [
+            (129, 'https://someurl1.com/test'),  # url_handle=='cb'
+            (65, 'https://someurl2.com/test'),  # url_handle=='bb'
+            (130, 'https://someurl3.com/test'),  # url_handle=='cd'
+        ]
+        for short_url_tuple in self.populated_short_url_tuples:
+            ShortenedUrl.objects.create(id=short_url_tuple[0], long_url=short_url_tuple[1])
 
     @patch.object(shortener_storage, 'generate_url_handle')
     def test_shorten_url_with_mocked_handle_generator(self, mock_generate_url_handle):
@@ -34,7 +38,7 @@ class TestShortenerStorage(TestCase):
 
         rows = ShortenedUrl.objects.all()
         tuple_list = [(row.id, row.long_url) for row in rows]
-        self.assertCountEqual(tuple_list, [(64, 'someurl1'), (128, 'someurl2')])
+        self.assertCountEqual(tuple_list, self.populated_short_url_tuples + [(64, 'someurl1'), (128, 'someurl2')])
         self.assertEqual(mock_generate_url_handle.call_count, 2)
 
     def test_shorten_url(self):
@@ -45,9 +49,9 @@ class TestShortenerStorage(TestCase):
 
         rows = ShortenedUrl.objects.all()
         tuple_list = [(row.id, row.long_url) for row in rows]
-        self.assertCountEqual(
-            tuple_list, [(convert_url_handle_to_number(url_handle), 'https://someurl3.io/index.html')]
-        )
+        self.assertCountEqual(tuple_list, self.populated_short_url_tuples + [
+            (convert_url_handle_to_number(url_handle), 'https://someurl3.io/index.html'),
+        ])
 
     @patch.object(shortener_storage, 'generate_url_handle')
     def test_shorten_url_collision_of_url_handle(self, mock_generate_url_handle):
@@ -72,7 +76,10 @@ class TestShortenerStorage(TestCase):
 
         rows = ShortenedUrl.objects.all()
         tuple_list = [(row.id, row.long_url) for row in rows]
-        self.assertCountEqual(tuple_list, [(192, 'http://someurl4/'), (256, 'http://someurl5/')])
+        self.assertCountEqual(tuple_list, self.populated_short_url_tuples + [
+            (192, 'http://someurl4/'),
+            (256, 'http://someurl5/'),
+        ])
         self.assertEqual(mock_generate_url_handle.call_count, 1 + 3)
 
     @patch.object(shortener_storage, 'generate_url_handle')
@@ -89,7 +96,7 @@ class TestShortenerStorage(TestCase):
 
         rows = ShortenedUrl.objects.all()
         tuple_list = [(row.id, row.long_url) for row in rows]
-        self.assertCountEqual(tuple_list, [(320, 'http://someurl6/')])
+        self.assertCountEqual(tuple_list, self.populated_short_url_tuples + [(320, 'http://someurl6/')])
         self.assertEqual(mock_generate_url_handle.call_count, 1 + 5)
 
     @patch.object(shortener_storage, 'generate_url_handle')
@@ -107,7 +114,7 @@ class TestShortenerStorage(TestCase):
 
         rows = ShortenedUrl.objects.all()
         tuple_list = [(row.id, row.long_url) for row in rows]
-        self.assertCountEqual(tuple_list, [])
+        self.assertCountEqual(tuple_list, self.populated_short_url_tuples)
         self.assertEqual(mock_generate_url_handle.call_count, 1)
 
     def test_expand_existing_url(self):
