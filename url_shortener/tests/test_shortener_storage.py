@@ -15,7 +15,7 @@ class TestShortenerStorage(TestCase):
 
     def setUp(self):
         """
-        Populate several shortened url in the database.
+        Populate several shortened urls in the database.
         """
         self.populated_short_url_tuples = [
             (129, 'https://someurl1.com/test'),  # url_handle=='cb'
