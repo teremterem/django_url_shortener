@@ -7,10 +7,14 @@
 <body>
 
 <form action="{% url 'shorten_url' %}" method="post">
-{% csrf_token %}
-<input type="text" name="long_url" id="long_url" value="">
-<input type="submit" value="Shorten URL">
+    {% csrf_token %}
+    <input type="text" name="long_url" id="long_url" value="">
+    <input type="submit" value="Shorten URL">
 </form>
+
+{% if last_short_url %}
+<h1><a href="{{ last_short_url }}" target="_blank">{{ last_short_url }}</a></h1>
+{% endif %}
 
 </body>
 </html>

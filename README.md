@@ -39,6 +39,8 @@ docker-compose run --rm web pipenv run python manage.py test
 
 ## Run
 
+TODO DJANGO_URL_SHORTENER_PREFIX
+
 ```
 docker-compose up
 ```
@@ -128,6 +130,7 @@ TODO
 - Cover Django views with tests as well.
 - Turn some of the unit tests into doctests?
 - Validate that it is indeed a url that is being shortened.
+- Protect your UI from injection attacks
 
 ### Ideas to further improve url lookup
 
