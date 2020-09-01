@@ -1,6 +1,6 @@
 from unittest.mock import patch
 
-from django.db import DatabaseError
+from django.db import DatabaseError, IntegrityError
 from django.test import TestCase
 
 from ..models import ShortenedUrl
@@ -76,13 +76,13 @@ class TestShortenerStorage(TestCase):
         mock_generate_url_handle.return_value = 'fa'
 
         shortener_storage.shorten_url('http://someurl6/')
-        shortener_storage.shorten_url('http://someurl7/')
+        with self.assertRaises(IntegrityError):
+            shortener_storage.shorten_url('http://someurl7/')
 
         rows = ShortenedUrl.objects.all()
         tuple_list = [(row.id, row.long_url) for row in rows]
         self.assertCountEqual(tuple_list, [(320, 'http://someurl6/')])
         self.assertEqual(mock_generate_url_handle.call_count, 1 + 5)
-        # TODO verify exception thrown
 
     @patch.object(shortener_storage, 'generate_url_handle')
     def test_shorten_url_some_other_exception(self, mock_generate_url_handle):
@@ -94,10 +94,10 @@ class TestShortenerStorage(TestCase):
             raise DatabaseError()
 
         mock_generate_url_handle.side_effect = _raise_error
-        shortener_storage.shorten_url('http://someurl8/')
+        with self.assertRaises(DatabaseError):
+            shortener_storage.shorten_url('http://someurl8/')
 
         rows = ShortenedUrl.objects.all()
         tuple_list = [(row.id, row.long_url) for row in rows]
         self.assertCountEqual(tuple_list, [(192, 'http://someurl4/')])
         self.assertEqual(mock_generate_url_handle.call_count, 1)
-        # TODO verify exception thrown
