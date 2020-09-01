@@ -13,6 +13,14 @@ class TestShortenerStorage(TestCase):
     Test shortener_storage.py module.
     """
 
+    def setUp(self):
+        """
+        Populate several shortened url in the database.
+        """
+        ShortenedUrl.objects.create(id=129, long_url='https://someurl1.com/test')  # url_handle=='cb'
+        ShortenedUrl.objects.create(id=65, long_url='https://someurl2.com/test')  # url_handle=='bb'
+        ShortenedUrl.objects.create(id=130, long_url='https://someurl3.com/test')  # url_handle=='cd'
+
     @patch.object(shortener_storage, 'generate_url_handle')
     def test_shorten_url_with_mocked_handle_generator(self, mock_generate_url_handle):
         """
@@ -101,3 +109,16 @@ class TestShortenerStorage(TestCase):
         tuple_list = [(row.id, row.long_url) for row in rows]
         self.assertCountEqual(tuple_list, [])
         self.assertEqual(mock_generate_url_handle.call_count, 1)
+
+    def test_expand_existing_url(self):
+        """
+        Make sure existing short url gets properly expanded into corresponding long url (see setUp method above).
+        """
+        self.assertEqual(shortener_storage.expand_url('bb'), 'https://someurl2.com/test')
+        self.assertEqual(shortener_storage.expand_url('cb'), 'https://someurl1.com/test')
+
+    def test_expand_non_existing_url(self):
+        """
+        Make sure an attempt to expand non-existing short url yields None.
+        """
+        self.assertIsNone(shortener_storage.expand_url('cc'))

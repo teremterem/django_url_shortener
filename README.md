@@ -140,7 +140,8 @@ TODO
 - Cover Django views with tests as well.
 - Turn some of the unit tests into doctests?
 - Validate that it is indeed a url that is being shortened.
-- Protect your UI from injection attacks
+- Protect people from url injection attacks? How? Validate that urls are actually urls?
+- Rewrite test docstrings in a more formal fashion ("given this then that" and so on)
 
 ### Ideas to further improve url lookup
 
@@ -184,6 +185,7 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 
 ### TODO
 
+1) https://stackoverflow.com/a/38260/2040370
 1) https://coverage.readthedocs.io/en/coverage-5.2.1/
 1) https://docs.djangoproject.com/en/3.1/intro/tutorial05/#test-a-view
 1) https://realpython.com/caching-in-django-with-redis/

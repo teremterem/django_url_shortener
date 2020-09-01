@@ -10,7 +10,6 @@ log = logging.getLogger(__name__)
 
 
 def index(request):
-    # TODO cover this function with unit test(s)
     last_short_url = request.session.pop('LAST_URL_HANDLE', '')
     if last_short_url:
         last_short_url = settings.SHORT_URL_PREFIX + last_short_url
@@ -20,7 +19,6 @@ def index(request):
 
 
 def shorten_url(request):
-    # TODO cover this function with unit test(s)
     long_url = request.POST['long_url'].strip()
     if long_url:
         url_handle = shortener_storage.shorten_url(long_url)
@@ -29,12 +27,13 @@ def shorten_url(request):
 
 
 def expand_url(request, url_handle):
-    # TODO cover this function with unit test(s)
     try:
         long_url = shortener_storage.expand_url(url_handle)
         if long_url:
             return HttpResponseRedirect(long_url)
     except Exception:
-        log.exception('Failed to resolve short URL with handle %s', url_handle)
+        # log exception with level debug to avoid log cluttering in hypothetical production - it is easy to provoke
+        # exceptions here by deliberately sending malformed url handles from the client
+        log.debug('Failed to resolve short URL with handle %s', url_handle, exc_info=True)
 
     raise Http404('URL not found')
