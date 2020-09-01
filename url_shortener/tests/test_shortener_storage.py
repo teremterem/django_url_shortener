@@ -20,7 +20,7 @@ class TestShortenerStorage(TestCase):
         self.populated_short_url_tuples = [
             (129, 'https://someurl1.com/test'),  # url_handle=='cb'
             (65, 'https://someurl2.com/test'),  # url_handle=='bb'
-            (130, 'https://someurl3.com/test'),  # url_handle=='cd'
+            (130, 'https://someurl3.com/test'),  # url_handle=='cc'
         ]
         for short_url_tuple in self.populated_short_url_tuples:
             ShortenedUrl.objects.create(id=short_url_tuple[0], long_url=short_url_tuple[1])
@@ -128,4 +128,4 @@ class TestShortenerStorage(TestCase):
         """
         Make sure an attempt to expand non-existing short url yields None.
         """
-        self.assertIsNone(shortener_storage.expand_url('cc'))
+        self.assertIsNone(shortener_storage.expand_url('cd'))
