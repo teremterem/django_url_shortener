@@ -33,13 +33,19 @@ there is no need to migrate DB again.
 
 ## Test
 
+Run the tests:
 ```
 docker-compose run --rm web pipenv run coverage run --source=. manage.py test
 ```
+
+To generate test coverage report run the following command:
 ```
 docker-compose run --rm web pipenv run coverage html
 ```
-TODO
+And then open `htmlcov/index.html` in your browser:
+```
+open htmlcov/index.html
+```
 
 ## Run
 
