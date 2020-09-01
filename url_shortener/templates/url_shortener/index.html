@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django URL Shortener</title>
+</head>
+<body>
+
+<form action="{% url 'shorten_url' %}" method="post">
+{% csrf_token %}
+<input type="text" name="long_url" id="long_url" value="">
+<input type="submit" value="Shorten URL">
+</form>
+
+</body>
+</html>

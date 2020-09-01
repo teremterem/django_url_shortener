@@ -171,6 +171,7 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 
 ### TODO
 
+1) https://docs.djangoproject.com/en/3.1/intro/tutorial05/#test-a-view
 1) https://realpython.com/caching-in-django-with-redis/
 1) https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
 1) https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key
