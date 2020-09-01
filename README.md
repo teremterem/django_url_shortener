@@ -34,8 +34,12 @@ there is no need to migrate DB again.
 ## Test
 
 ```
-docker-compose run --rm web pipenv run python manage.py test
+docker-compose run --rm web pipenv run coverage run --source=. manage.py test
 ```
+```
+docker-compose run --rm web pipenv run coverage html
+```
+TODO
 
 ## Run
 
@@ -174,6 +178,7 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 
 ### TODO
 
+1) https://coverage.readthedocs.io/en/coverage-5.2.1/
 1) https://docs.djangoproject.com/en/3.1/intro/tutorial05/#test-a-view
 1) https://realpython.com/caching-in-django-with-redis/
 1) https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/

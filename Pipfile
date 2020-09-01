@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 ipdb = "*"
+coverage = "*"
 
 [packages]
 django = ">=3,<4"
