@@ -1,8 +1,12 @@
+import logging
+
 from django.conf import settings
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect
 
 from url_shortener.shortener import shortener_storage
+
+log = logging.getLogger(__name__)
 
 
 def index(request):
@@ -23,7 +27,11 @@ def shorten_url(request):
 
 
 def expand_url(request, url_handle):
-    long_url = shortener_storage.expand_url(url_handle)
-    if long_url:
-        return HttpResponseRedirect(long_url)
+    try:
+        long_url = shortener_storage.expand_url(url_handle)
+        if long_url:
+            return HttpResponseRedirect(long_url)
+    except Exception:
+        log.exception('Failed to resolve short URL with handle %s', url_handle)
+
     raise Http404('URL not found')

@@ -34,6 +34,6 @@ def shorten_url(long_url):
 
 def expand_url(url_handle):
     try:
-        return ShortenedUrl.objects.get(id=url_handle).long_url
+        return ShortenedUrl.objects.get(id=convert_url_handle_to_number(url_handle)).long_url
     except ShortenedUrl.DoesNotExist:
         return None
