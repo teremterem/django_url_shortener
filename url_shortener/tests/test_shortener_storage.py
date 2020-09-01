@@ -99,5 +99,5 @@ class TestShortenerStorage(TestCase):
 
         rows = ShortenedUrl.objects.all()
         tuple_list = [(row.id, row.long_url) for row in rows]
-        self.assertCountEqual(tuple_list, [(192, 'http://someurl4/')])
+        self.assertCountEqual(tuple_list, [])
         self.assertEqual(mock_generate_url_handle.call_count, 1)
