@@ -119,7 +119,7 @@ against such scanning - I just hope that this way it is a bit harder to scan).
 
 ## How could it be improved further
 
-- First of all, easily reproducable performance testing approach should be established for the app (see [issue #2](
+- First of all, easily reproducible performance testing approach should be established for the app (see [issue #2](
   https://github.com/teremterem/django_url_shortener/issues/2)), in order to make the rest of optimization-for-speed
   decisions informed.
 - Secondly, Redis in-memory cache could be used to cache long versions of urls (DB would still be used as permanent
