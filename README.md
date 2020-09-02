@@ -103,7 +103,7 @@ The project description to [this library](https://pypi.org/project/short_url/) i
   - This url handle is then converted to a number (`convert_url_handle_to_number` function of the same module) which is
     then used as primary key to store the original url against in a DB table (8-byte signed integer is used for this id
     in Postgres).
-  - 64****7 (4 398 046 511 103) is not a small range of ids but still not UUID-grade, therefore a mechanism of up to 5
+  - `64**7` (`4 398 046 511 103`) is not a small range of ids but still not UUID-grade, therefore a mechanism of up to 5
     handle (re)generation attempts is implemented when collisions happen.
 - When a short url is being expanded
   - `convert_url_handle_to_number` function in `url_shortener/shortener/shortener_core.py` is used to convert
