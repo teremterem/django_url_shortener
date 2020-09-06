@@ -23,4 +23,4 @@ class TestShortenVariousInputs(TestCase):
 
         rows = ShortenedUrl.objects.all()
         self.assertEqual(len(rows), 1)
-        self.assertEquas(rows[0].long_url, 'https://hello.world.com/how_are_you_doing/you_world')
+        self.assertEqual(rows[0].long_url, 'https://hello.world.com/how_are_you_doing/you_world')
