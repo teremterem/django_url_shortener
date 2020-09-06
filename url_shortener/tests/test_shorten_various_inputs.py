@@ -1,20 +1,26 @@
-from unittest.mock import patch
-
-from django.db import DatabaseError, IntegrityError
 from django.test import TestCase
 
 from ..models import ShortenedUrl
 from ..shortener import shortener_storage
-from ..shortener.shortener_core import convert_url_handle_to_number
 
 
 class TestShortenVariousInputs(TestCase):
     """
-    Test shortener_storage.py::shorten_url function against different inputs.
+    Feature: shortener_storage.py::shorten_url function accepts various long url formats and processes them correctly
     """
 
-    def test_shorten_url_with_http(self):
+    def test_shorten_url_with_https(self):
         """
+        Scenario: User submits long url with https:// protocol specified
+            Given no other long urls have been shortened yet
+
+             When user submits long url with https:// protocol specified
+
+             Then only one record exists in shortenedurl DB table
+              And long url is stored as is with no modification other than leading/training whitespaces stripped
         """
-        # TODO
-        pass
+        shortener_storage.shorten_url('   https://hello.world.com/how_are_you_doing/you_world      ')
+
+        rows = ShortenedUrl.objects.all()
+        self.assertEqual(len(rows), 1)
+        self.assertEquas(rows[0].long_url, 'https://hello.world.com/how_are_you_doing/you_world')
