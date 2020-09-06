@@ -10,6 +10,7 @@ CONCLUSION: numeric representation of URL HANDLE of length 7 can be stored in Po
 """
 import secrets
 import string
+from urllib.parse import urlparse, urlunparse
 
 URL_ALPHABET = string.ascii_lowercase + string.ascii_uppercase + string.digits + '-_'  # 64 distinct characters
 URL_HANDLE_LEN = 7
@@ -34,6 +35,20 @@ def convert_url_handle_to_number(url_handle):
         number <<= 6
         number ^= URL_ALPHABET_TRANSLATIONS[ord(symbol)]
     return number
+
+
+def normalize_long_url(long_url):
+    """
+    https://stackoverflow.com/a/21659195/2040370
+    """
+    long_url = long_url.strip()
+
+    parse_result = urlparse(long_url, 'http')
+
+    netloc = parse_result.netloc or parse_result.path
+    path = parse_result.path if parse_result.netloc else ''
+
+    return urlunparse((parse_result.scheme, netloc, path, *parse_result[3:]))
 
 
 def _generate_url_alphabet_translations_tuple():
