@@ -14,7 +14,7 @@ class TestShortenVariousInputs(TestCase):
         Scenario: User submits long url with https:// protocol specified
             Given no other long urls have been shortened yet
 
-             When user submits long url with https:// protocol specified
+             When User submits long url with https:// protocol specified
 
              Then only one record exists in shortenedurl DB table
               And long url is stored as is with no modification other than leading/training whitespaces stripped
