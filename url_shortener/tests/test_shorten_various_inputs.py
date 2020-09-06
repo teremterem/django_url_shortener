@@ -17,8 +17,7 @@ class TestShortenVariousInputs(TestCase):
         """
         self.client = Client()
 
-    @patch.object(shortener_storage, 'generate_url_handle', return_value='abc')
-    def test_shorten_url_with_https(self, mock_generate_url_handle):
+    def test_shorten_url_with_https(self):
         """
         Scenario: User submits long url with hTTps:// protocol specified
             Given http client is initialized
@@ -31,14 +30,21 @@ class TestShortenVariousInputs(TestCase):
               And the service redirects from short url using 302 (temporary) redirect
               And the service redirects from short url to the long url that is stored
         """
+        self._test_shorten_then_expand(
+            long_url_input='   hTTps://hello.world.com/how_are_you_doing/you_world+%20      ',
+            expected_redirect_url='hTTps://hello.world.com/how_are_you_doing/you_world+%20',
+        )
+
+    @patch.object(shortener_storage, 'generate_url_handle', return_value='abc')
+    def _test_shorten_then_expand(self, mock_generate_url_handle, long_url_input, expected_redirect_url):
         self.client.post('/shorten-url/', {
-            'long_url': '   hTTps://hello.world.com/how_are_you_doing/you_world+%20      ',
+            'long_url': long_url_input,
         })
 
         rows = ShortenedUrl.objects.all()
         self.assertEqual(len(rows), 1)
-        self.assertEqual(rows[0].long_url, 'hTTps://hello.world.com/how_are_you_doing/you_world+%20')
+        self.assertEqual(rows[0].long_url, expected_redirect_url)
 
         response = self.client.get('/abc')
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, 'hTTps://hello.world.com/how_are_you_doing/you_world+%20')
+        self.assertEqual(response.url, expected_redirect_url)
