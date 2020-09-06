@@ -95,7 +95,7 @@ interact with ipdb debugger.
 
 ## URL shortening approach
 
-The project description to [this library](https://pypi.org/project/short_url/) inspired me to do the following:
+A project description to [this library](https://pypi.org/project/short_url/) inspired me to do the following:
 - When a long url is being shortened
   - A cryptographycally strong random sequence of 7 characters (a url handle) is generated using [secrets](
     https://docs.python.org/3/library/secrets.html#recipes-and-best-practices) library and an alphabet of 64 characters
