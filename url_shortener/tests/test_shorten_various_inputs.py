@@ -19,20 +19,39 @@ class TestShortenVariousInputs(TestCase):
 
     def test_shorten_url_with_https(self):
         """
-        Scenario: User submits long url with hTTps:// protocol specified
+        Scenario: User submits a long url with hTTps:// protocol specified
             Given http client is initialized
               And no other long urls have been shortened yet
 
-             When User submits long url with hTTps:// protocol specified (in mixed case)
+             When User submits a long url with hTTps:// protocol specified (in mixed case)
 
              Then only one record exists in shortenedurl DB table
-              And long url is stored as is with no modification other than leading/training whitespaces stripped
+              And the long url is stored as is with no modification other than leading/training whitespaces stripped
               And the service redirects from short url using 302 (temporary) redirect
               And the service redirects from short url to the long url that is stored
         """
         self._test_shorten_then_expand(
             long_url_input='   hTTps://hello.world.com/how_are_you_doing/you_world+%20      ',
             expected_redirect_url='hTTps://hello.world.com/how_are_you_doing/you_world+%20',
+        )
+
+    def test_shorten_url_without_protocol(self):
+        """
+        Scenario: User submits a long url without protocol specified
+            Given http client is initialized
+              And no other long urls have been shortened yet
+
+             When User submits a long url without protocol specified
+
+             Then only one record exists in shortenedurl DB table
+              And leading/trailing whitespaces are stripped from the long url
+              And the long url is prepended with http:// and only then stored
+              And the service redirects from short url using 302 (temporary) redirect
+              And the service redirects from short url to the long url that is stored
+        """
+        self._test_shorten_then_expand(
+            long_url_input='  \n\thello.World.com/how_are_you_doing/you_World+%20 \t\n      ',
+            expected_redirect_url='https://hello.World.com/how_are_you_doing/you_World+%20',
         )
 
     @patch.object(shortener_storage, 'generate_url_handle', return_value='abc')
