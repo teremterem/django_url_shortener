@@ -32,7 +32,7 @@ class TestShortenVariousInputs(TestCase):
         """
         self._test_shorten_then_expand(
             long_url_input='   hTTps://hello.World.com/how_are_you_doing/you_World+?one=two&three#four+%20      ',
-            expected_redirect_url='hTTps://hello.World.com/how_are_you_doing/you_World+?one=two&three#four+%20',
+            expected_redirect_url='https://hello.World.com/how_are_you_doing/you_World+?one=two&three#four+%20',
         )
 
     def test_shorten_url_without_protocol(self):
