@@ -31,8 +31,8 @@ class TestShortenVariousInputs(TestCase):
               And the service redirects from short url to the long url that was stored
         """
         self._test_shorten_then_expand(
-            long_url_input='   hTTps://hello.world.com/how_are_you_doing/you_world+%20      ',
-            expected_redirect_url='hTTps://hello.world.com/how_are_you_doing/you_world+%20',
+            long_url_input='   hTTps://hello.World.com/how_are_you_doing/you_World+?one=two&three#four+%20      ',
+            expected_redirect_url='hTTps://hello.World.com/how_are_you_doing/you_World+?one=two&three#four+%20',
         )
 
     def test_shorten_url_without_protocol(self):
@@ -50,8 +50,8 @@ class TestShortenVariousInputs(TestCase):
               And the service redirects from short url to the long url that was stored
         """
         self._test_shorten_then_expand(
-            long_url_input='  \n\thello.World.com/how_are_you_doing/you_World+%20 \t\n      ',
-            expected_redirect_url='http://hello.World.com/how_are_you_doing/you_World+%20',
+            long_url_input='  \n\thello.World.com/how_are_you_doing/you_World+?one=two&three#four+%20 \t\n      ',
+            expected_redirect_url='http://hello.World.com/how_are_you_doing/you_World+?one=two&three#four+%20',
         )
 
     @patch.object(shortener_storage, 'generate_url_handle', return_value='abc')
