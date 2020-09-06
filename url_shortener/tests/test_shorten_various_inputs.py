@@ -51,7 +51,7 @@ class TestShortenVariousInputs(TestCase):
         """
         self._test_shorten_then_expand(
             long_url_input='  \n\thello.World.com/how_are_you_doing/you_World+%20 \t\n      ',
-            expected_redirect_url='https://hello.World.com/how_are_you_doing/you_World+%20',
+            expected_redirect_url='http://hello.World.com/how_are_you_doing/you_World+%20',
         )
 
     @patch.object(shortener_storage, 'generate_url_handle', return_value='abc')
