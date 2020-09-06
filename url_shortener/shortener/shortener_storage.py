@@ -2,7 +2,7 @@ import logging
 
 from django.db import transaction, IntegrityError
 
-from .shortener_core import generate_url_handle, convert_url_handle_to_number
+from .shortener_utils import generate_url_handle, convert_url_handle_to_number
 from ..models import ShortenedUrl
 
 log = logging.getLogger(__name__)

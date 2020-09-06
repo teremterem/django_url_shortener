@@ -28,7 +28,7 @@ class TestShortenVariousInputs(TestCase):
              Then only one record exists in shortenedurl DB table
               And the long url is stored as is with no modification other than leading/training whitespaces stripped
               And the service redirects from short url using 302 (temporary) redirect
-              And the service redirects from short url to the long url that is stored
+              And the service redirects from short url to the long url that was stored
         """
         self._test_shorten_then_expand(
             long_url_input='   hTTps://hello.world.com/how_are_you_doing/you_world+%20      ',
@@ -47,7 +47,7 @@ class TestShortenVariousInputs(TestCase):
               And leading/trailing whitespaces are stripped from the long url
               And the long url is prepended with http:// and only then stored
               And the service redirects from short url using 302 (temporary) redirect
-              And the service redirects from short url to the long url that is stored
+              And the service redirects from short url to the long url that was stored
         """
         self._test_shorten_then_expand(
             long_url_input='  \n\thello.World.com/how_are_you_doing/you_World+%20 \t\n      ',
