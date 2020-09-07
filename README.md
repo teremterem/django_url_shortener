@@ -73,6 +73,8 @@ Here is a relevant snippet from `docker-compose.yml`:
 Changing this env var will ensure that the short urls that the app produces when url shortening is requested will start
 with the prefix you specified. For ex. `https://yourdomain.io/WBcTkD5`.
 
+:warning: ***`docker-compose up` needs to be restarted after `docker-compose.yml` is edited.***
+
 ## Rebuild
 
 ```
