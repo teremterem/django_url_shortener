@@ -55,6 +55,8 @@ docker-compose up
 ```
 Then open http://localhost:8000/ in your browser.
 
+---
+
 :warning: ***If you are not hosting this app locally and/or you modified `docker-compose.yml` in such a way that the
 app runs on a different port then you also need to specify `DJANGO_URL_SHORTENER_PREFIX` env var for `web` Docker
 container, which you can do [either in docker-compose.yml or through CLI](
