@@ -123,4 +123,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-SHORT_URL_PREFIX = os.getenv('DJANGO_URL_SHORTENER_PREFIX', 'http://localhost:8000/')
+# URL Shortener
+
+DJANGO_URL_SHORTENER_PREFIX = os.getenv('DJANGO_URL_SHORTENER_PREFIX', 'http://localhost:8000/')

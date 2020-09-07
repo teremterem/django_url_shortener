@@ -55,14 +55,23 @@ docker-compose up
 ```
 Then open http://localhost:8000/ in your browser.
 
-:warning: ***If you are hosting this app in such a way that this url is different for you then you need to specify
-`DJANGO_URL_SHORTENER_PREFIX` env var for `web` Docker container, which you can do [either in docker-compose.yml or
-through CLI](https://docs.docker.com/compose/environment-variables/).***
+---
 
-Alternatively, you can just edit the following line in `django_url_shortener/settings.py`:
-```python
-SHORT_URL_PREFIX = os.getenv('DJANGO_URL_SHORTENER_PREFIX', 'http://localhost:8000/')
+:warning: ***If you are not hosting this app locally (and/or you modified `docker-compose.yml` in such a way that the
+app is available on a different port) then you also need to specify `DJANGO_URL_SHORTENER_PREFIX` env var for `web`
+Docker container, which you can do [either in docker-compose.yml or through CLI](
+https://docs.docker.com/compose/environment-variables/).***  
+Here is a relevant snippet from `docker-compose.yml`:
 ```
+  ...
+  web:
+    environment:
+      - DJANGO_URL_SHORTENER_PREFIX=http://localhost:8000/  # change to https://yourdomain.io/
+                                                            # (replace yourdomain.io with your domain name)
+      - ...
+```
+Changing this env var will ensure that the short urls that the app produces when url shortening is requested will start
+with the prefix you specified. For ex. `https://yourdomain.io/WBcTkD5`.
 
 ## Rebuild
 
@@ -135,11 +144,11 @@ against such scanning - I just hope that this way it is a bit harder to scan).
 ## Choices made
 
 - I always choose **pipenv** (see basic usage [here](https://pipenv-fork.readthedocs.io/en/latest/basics.html)) as
-  dependency manager in my Python projects. It achieves the kind of dependency freezing that `pip freeze > requirements.txt`
-  approach produces but does it in a much more elegant manner. Versions of the whole dependency tree are frozen in
-  `Pipfile.lock` while `Pipfile` is used to maintain the list of the actual project dependencies (and not mix them with
-  dependencies of dependencies as `pip freeze` does and which becomes a maintenance nightmare). See [this article](
-  https://realpython.com/pipenv-guide/) for more info.
+  dependency manager in my Python projects. It achieves the kind of dependency freezing that
+  `pip freeze > requirements.txt` approach produces but does it in a much more elegant manner. Versions of the whole
+  dependency tree are frozen in `Pipfile.lock` while `Pipfile` is used to maintain the list of the actual project
+  dependencies (and not mix them with dependencies of dependencies as `pip freeze` does and which becomes a
+  maintenance nightmare). See [this article](https://realpython.com/pipenv-guide/) for more info.
 
 ## Miscellaneous
 

@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 def index(request):
     last_short_url = request.session.pop('LAST_URL_HANDLE', '')
     if last_short_url:
-        last_short_url = settings.SHORT_URL_PREFIX + last_short_url
+        last_short_url = settings.DJANGO_URL_SHORTENER_PREFIX + last_short_url
     return render(request, 'url_shortener/index.html', context={
         'last_short_url': last_short_url,
     })
