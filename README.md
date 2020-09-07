@@ -55,14 +55,20 @@ docker-compose up
 ```
 Then open http://localhost:8000/ in your browser.
 
-:warning: ***If you are hosting this app in such a way that this url is different for you then you need to specify
-`DJANGO_URL_SHORTENER_PREFIX` env var for `web` Docker container, which you can do [either in docker-compose.yml or
-through CLI](https://docs.docker.com/compose/environment-variables/).***
-
-Alternatively, you can just edit the following line in `django_url_shortener/settings.py`:
-```python
-DJANGO_URL_SHORTENER_PREFIX = os.getenv('DJANGO_URL_SHORTENER_PREFIX', 'http://localhost:8000/')
+:warning: ***If you are __not__ hosting this app locally and/or you modified `docker-compose.yml` in such a way that the
+app runs on a different port then you also need to specify `DJANGO_URL_SHORTENER_PREFIX` env var for `web` Docker
+container, which you can do [either in docker-compose.yml or through CLI](
+https://docs.docker.com/compose/environment-variables/). Here is a relevant snippet from `docker-compose.yml`:***
 ```
+  ...
+  web:
+    environment:
+      - DJANGO_URL_SHORTENER_PREFIX=http://localhost:8000/  # change to https://yourdomain.io/
+                                                            # (replace yourdomain.io with your domain name)
+      - ...
+```
+This will ensure that the short urls that the app produces when url shortening is requested will start with the prefix
+you specified. For ex. `https://yourdomain.io/WBcTkD5`.
 
 ## Rebuild
 
