@@ -9,6 +9,9 @@ from ..shortener import shortener_storage
 class TestShortenVariousInputs(TestCase):
     """
     Feature: shorten_url view accepts various long url formats and processes them correctly
+
+    https://martinfowler.com/bliki/GivenWhenThen.html
+    https://docs.djangoproject.com/en/3.1/intro/tutorial05/#test-a-view
     """
 
     def setUp(self):
@@ -75,7 +78,7 @@ class TestShortenVariousInputs(TestCase):
             long_url_input='   FtP://some/free/text-GOES%20here \n'
                            ' In [561]: %time method = [a for a in data if b.startswith(‘http’)] \t ?#      ',
             stored_long_url='ftp://some/free/text-GOES%20here \n'
-                           ' In [561]: %time method = [a for a in data if b.startswith(‘http’)] \t ',
+                            ' In [561]: %time method = [a for a in data if b.startswith(‘http’)] \t ',
             expected_redirect_url='ftp://some/free/text-GOES%20here%20%0A'
                                   '%20In%20[561]:%20%time%20method%20=%20['
                                   'a%20for%20a%20in%20data%20if%20b.startswith(%E2%80%98http%E2%80%99)]%20%09%20',
