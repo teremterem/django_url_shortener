@@ -2,13 +2,13 @@ from unittest.mock import patch
 
 from django.test import TestCase
 
-from ..shortener.shortener_core import generate_url_handle, convert_url_handle_to_number, URL_ALPHABET, \
+from ..shortener.shortener_utils import generate_url_handle, convert_url_handle_to_number, URL_ALPHABET, \
     URL_HANDLE_LEN, URL_ALPHABET_TRANSLATIONS
 
 
-class TestShortenerCore(TestCase):
+class TestShortenerUtils(TestCase):
     """
-    Test shortener_core.py module.
+    Test shortener_utils.py module.
     """
 
     def test_url_alphabet_size(self):

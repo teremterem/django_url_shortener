@@ -95,18 +95,18 @@ interact with ipdb debugger.
 
 ## URL shortening approach
 
-The project description to [this library](https://pypi.org/project/short_url/) inspired me to do the following:
+A project description to [this library](https://pypi.org/project/short_url/) inspired me to do the following:
 - When a long url is being shortened
   - A cryptographycally strong random sequence of 7 characters (a url handle) is generated using [secrets](
     https://docs.python.org/3/library/secrets.html#recipes-and-best-practices) library and an alphabet of 64 characters
-    (see `generate_url_handle` function in `url_shortener/shortener/shortener_core.py`).
+    (see `generate_url_handle` function in `url_shortener/shortener/shortener_utils.py`).
   - This url handle is then converted to a number (`convert_url_handle_to_number` function of the same module) which is
     then used as primary key to store the original url against in a DB table (8-byte signed integer is used for this id
     in Postgres).
   - `64**7` (`4 398 046 511 103`) is not a small range of ids but still not UUID-grade, therefore a mechanism of up to 5
     handle (re)generation attempts is implemented when collisions happen.
 - When a short url is being expanded
-  - `convert_url_handle_to_number` function in `url_shortener/shortener/shortener_core.py` is used to convert
+  - `convert_url_handle_to_number` function in `url_shortener/shortener/shortener_utils.py` is used to convert
     7-character url handle into a number which is then looked for in the primary key column of the DB table where long
     versions of urls are stored.  
     ***The assumption here is that lookup by int primary key is faster than by any other kind of primary key.***

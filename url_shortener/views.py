@@ -4,7 +4,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect
 
-from url_shortener.shortener import shortener_storage
+from url_shortener.shortener import shortener_storage, shortener_utils
 
 log = logging.getLogger(__name__)
 
@@ -21,8 +21,11 @@ def index(request):
 def shorten_url(request):
     long_url = request.POST['long_url'].strip()
     if long_url:
+        long_url = shortener_utils.normalize_long_url(long_url)
+
         url_handle = shortener_storage.shorten_url(long_url)
         request.session['LAST_URL_HANDLE'] = url_handle
+
     return redirect('index', permanent=False)
 
 
