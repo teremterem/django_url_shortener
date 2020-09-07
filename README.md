@@ -59,6 +59,7 @@ Then open http://localhost:8000/ in your browser.
 app runs on a different port then you also need to specify `DJANGO_URL_SHORTENER_PREFIX` env var for `web` Docker
 container, which you can do [either in docker-compose.yml or through CLI](
 https://docs.docker.com/compose/environment-variables/).***
+
 Here is a relevant snippet from `docker-compose.yml`:
 ```
   ...
