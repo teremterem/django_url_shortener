@@ -60,13 +60,13 @@ class TestShortenVariousInputs(TestCase):
             expected_redirect_url='http://hello.World.com/how_are_you_doing/you_World+?one=two&three#four+%20',
         )
 
-    def test_shorten_url_with_git_ssh_protocol(self):
+    def test_shorten_url_with_ftp_protocol(self):
         """
         Scenario: User submits a long url with FtP:// protocol specified
             Given http client is initialized
               And no other long urls have been shortened yet
 
-             When User submits a long url with giT+SSh:// protocol specified (in mixed case)
+             When User submits a long url with FtP:// protocol specified (in mixed case)
 
              Then only one record exists in shortenedurl DB table
               And the long url is stored as is with no modification other than leading/training whitespaces stripped
