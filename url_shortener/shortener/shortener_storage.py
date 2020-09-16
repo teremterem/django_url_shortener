@@ -39,7 +39,15 @@ def shorten_url(long_url):
 def expand_url(url_handle):
     log.debug('Expanding %s', url_handle)
     try:
-        return ShortenedUrl.objects.get(id=convert_url_handle_to_number(url_handle)).long_url
+        shortened_url = ShortenedUrl.objects.get(id=convert_url_handle_to_number(url_handle))
+        if shortened_url.click_limit is not None:
+            if shortened_url.click_limit <= 0:
+                return None
+
+            shortened_url.click_limit -= 1
+            shortened_url.save()
+
+        return shortened_url.long_url
     except ShortenedUrl.DoesNotExist:
         log.debug('URL handle %s not found', url_handle)
         return None

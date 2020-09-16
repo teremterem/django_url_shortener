@@ -20,7 +20,7 @@ class TestShortenVariousInputs(TestCase):
         """
         self.client = Client()
 
-    def test_shorten_url_with_https(self):
+    def test_shorten_url_with_https_protocol(self):
         """
         Scenario: User submits a long url with hTTps:// protocol specified
             Given http client is initialized
@@ -99,3 +99,24 @@ class TestShortenVariousInputs(TestCase):
         response = self.client.get('/abc')
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, expected_redirect_url)
+
+    def test_unlimited_clicks(self):
+        pass
+
+    @patch.object(shortener_storage, 'generate_url_handle', return_value='abc')
+    def test_404_after_3_clicks(self, mock_generate_url_handle):
+        self.client.post('/shorten-url/', {
+            'long_url': 'www.google.com',
+        })
+
+        shortened_url = ShortenedUrl.objects.all()[0]
+        shortened_url.click_limit = 3
+        shortened_url.save()
+
+        for _ in range(3):
+            response = self.client.get('/abc')
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.url, 'http://www.google.com')
+
+        response = self.client.get('/abc')
+        self.assertEqual(response.status_code, 404)
