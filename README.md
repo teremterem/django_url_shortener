@@ -1,5 +1,3 @@
-:warning: ***ATTENTION! potential [licensing problem](https://github.com/teremterem/django_url_shortener/issues/19)***
-
 # Django URL Shortener
 
 ## Install Docker Compose
