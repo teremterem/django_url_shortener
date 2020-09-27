@@ -174,7 +174,7 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 
 ## Other useful links
 
-1) https://guides.github.com/introduction/flow/ (also see "Note of reflection" at the top of https://nvie.com/posts/a-successful-git-branching-model/)
+1) https://guides.github.com/introduction/flow/
 1) https://choosealicense.com/
 1) https://docs.docker.com/compose/django/
 1) https://hub.docker.com/_/python
