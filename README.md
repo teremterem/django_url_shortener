@@ -179,15 +179,15 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 1) [Quickstart: Compose and Django](https://docs.docker.com/compose/django/)
 1) [Python (Docker Official Images)](https://hub.docker.com/_/python)
 1) [What's the difference between "Shared" and "Simple" tags? (docker-library/faq)](https://github.com/docker-library/faq#whats-the-difference-between-shared-and-simple-tags)
-1) https://docs.djangoproject.com/en/3.1/topics/migrations/#the-commands
-1) https://pythonspeed.com/articles/schema-migrations-server-startup/
-1) https://docs.djangoproject.com/en/3.1/topics/testing/overview/
-1) https://odwyer.software/blog/how-to-use-ipdb-with-docker-compose
-1) https://stackoverflow.com/questions/36249744/interactive-shell-using-docker-compose
-1) https://docs.python.org/3/library/unittest.mock.html
-1) https://docs.djangoproject.com/en/3.1/topics/db/transactions/
-1) https://stackoverflow.com/a/57118885/2040370
-1) https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax
+1) [The Commands (Django Migrations)](https://docs.djangoproject.com/en/3.1/topics/migrations/#the-commands)
+1) [Decoupling database migrations from server startup: why and how](https://pythonspeed.com/articles/schema-migrations-server-startup/)
+1) [Writing and running tests (Django Documentation)](https://docs.djangoproject.com/en/3.1/topics/testing/overview/)
+1) [How to use ipdb with docker-compose](https://odwyer.software/blog/how-to-use-ipdb-with-docker-compose)
+1) [Interactive shell using Docker Compose (Stack Overflow)](https://stackoverflow.com/questions/36249744/interactive-shell-using-docker-compose)
+1) [unittest.mock — mock object library](https://docs.python.org/3/library/unittest.mock.html)
+1) [Database transactions (Django Documentation)](https://docs.djangoproject.com/en/3.1/topics/db/transactions/)
+1) [How to make a styled Markdown admonition box in a GitHub Gist?](https://stackoverflow.com/a/57118885/2040370)
+1) [Basic writing and formatting syntax (Github Markdown)](https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
 1) https://stackoverflow.com/a/38260/2040370
 1) https://realpython.com/caching-in-django-with-redis/
 1) https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
