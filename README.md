@@ -176,7 +176,7 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 
 1) [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
 1) [Choose an open source license](https://choosealicense.com/)
-1) [Quickstart: Compose and Django](https://docs.docker.com/compose/django/)
+1) [Quickstart: Compose and Django (Docker)](https://docs.docker.com/compose/django/)
 1) [Python (Docker Official Images)](https://hub.docker.com/_/python)
 1) [What's the difference between "Shared" and "Simple" tags? (docker-library/faq)](https://github.com/docker-library/faq#whats-the-difference-between-shared-and-simple-tags)
 1) [The Commands (Django Migrations)](https://docs.djangoproject.com/en/3.1/topics/migrations/#the-commands)
