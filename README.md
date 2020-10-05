@@ -188,8 +188,8 @@ docker-compose run --rm web pipenv run django-admin startapp url_shortener
 1) [Database transactions (Django Documentation)](https://docs.djangoproject.com/en/3.1/topics/db/transactions/)
 1) [How to make a styled Markdown admonition box in a GitHub Gist?](https://stackoverflow.com/a/57118885/2040370)
 1) [Basic writing and formatting syntax (Github Markdown)](https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
-1) https://stackoverflow.com/a/38260/2040370
-1) https://realpython.com/caching-in-django-with-redis/
-1) https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
-1) https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key
-1) https://en.wikipedia.org/wiki/URL_shortening
+1) [When should I mock? (Stack Overflow)](https://stackoverflow.com/a/38260/2040370)
+1) [Caching in Django With Redis](https://realpython.com/caching-in-django-with-redis/)
+1) [Docker RUN vs CMD vs ENTRYPOINT](https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/)
+1) [Purpose of Django setting ‘SECRET_KEY’ (Stack Overflow)](https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key)
+1) [URL shortening (Wikipedia)](https://en.wikipedia.org/wiki/URL_shortening)
